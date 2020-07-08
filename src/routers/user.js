@@ -11,7 +11,7 @@ router.get("/register", (req, res) => {
   res.render("register");
 });
 
-router.post("/register", async (req, res) => {
+router.post("/register", (req, res) => {
   req.body.username;
   req.body.email;
   const user = new User({ username: req.body.username, email: req.body.email });
@@ -33,24 +33,20 @@ router.get("/login", (req, res) => {
   res.render("login");
 });
 
-router.post("/users/login", async (req, res) => {
-  try {
-    const user = await User.findByCredentials(
-      req.body.email,
-      req.body.password
-    );
-    res.send(user);
-  } catch (err) {
-    res.status(400).send();
-  }
-});
+router.post(
+  "/login",
+  passport.authenticate("local", {
+    successRedirect: "/profile",
+    failureRedirect: "/login",
+  }),
+  (req, res) => {}
+);
 
 //======================Logout======================
-router.post("/users/logout", async (req, res) => {
-  try {
-  } catch (err) {
-    res.status(500).send();
-  }
+
+router.get("/logout", (req, res) => {
+  req.logout();
+  res.redirect("/");
 });
 
 //==================Update===================
