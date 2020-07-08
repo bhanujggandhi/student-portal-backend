@@ -12,9 +12,14 @@ router.get("/register", (req, res) => {
 });
 
 router.post("/register", (req, res) => {
-  req.body.username;
-  req.body.email;
-  const user = new User({ username: req.body.username, email: req.body.email });
+  const user = new User({
+    username: req.body.username,
+    email: req.body.email,
+    fName: req.body.fName,
+    lName: req.body.lName,
+    wNumber: req.body.wNumber,
+    collegeName: req.body.collegeName,
+  });
 
   User.register(user, req.body.password, (err, user) => {
     if (err) {
