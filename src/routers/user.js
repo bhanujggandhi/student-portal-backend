@@ -7,6 +7,7 @@ const nodemailer = require("nodemailer");
 const crypto = require("crypto");
 const async = require("async");
 const { use } = require("passport");
+const { gmailId, gmailPassword } = require("../config/keys");
 
 const app = express();
 
@@ -92,8 +93,8 @@ router.post("/forgot", (req, res, next) => {
         const smtpTransport = nodemailer.createTransport({
           service: "Gmail",
           auth: {
-            user: "testbhanuj@gmail.com",
-            pass: "bhanujtest123",
+            user: gmailId,
+            pass: gmailPassword,
           },
         });
         const mailOptions = {
@@ -188,8 +189,8 @@ router.post("/reset/:token", (req, res) => {
         const smtpTransport = nodemailer.createTransport({
           service: "Gmail",
           auth: {
-            user: "testbhanuj@gmail.com",
-            pass: "bhanujtest123",
+            user: gmailId,
+            pass: gmailPassword,
           },
         });
         const mailOptions = {
