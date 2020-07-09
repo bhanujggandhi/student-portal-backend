@@ -19,8 +19,8 @@ const userSchema = new mongoose.Schema({
   },
   email: {
     type: String,
-    // unique: true,
-    // required: true,
+    unique: true,
+    required: true,
     trim: true,
     lowercase: true,
   },
@@ -33,6 +33,8 @@ const userSchema = new mongoose.Schema({
     type: String,
     trim: true,
   },
+  resetPasswordToken: String,
+  resetPasswordExpires: Date,
 });
 
 // Profile Photo
