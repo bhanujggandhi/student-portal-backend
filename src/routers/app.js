@@ -12,7 +12,7 @@ router.get("/profile", function (req, res) {
 });
 router.get("/logout", function (req, res) {
   req.logout();
-  res.redirect("/logout");
+  res.redirect("/");
 });
 
 module.exports = router;
