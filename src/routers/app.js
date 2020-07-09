@@ -9,8 +9,13 @@ router.get("/", function (req, res) {
 });
 
 router.get("/profile", isLoggedIn, function (req, res) {
-  res.send(req.user);
-  // res.render("profile");
+  res.render("profile", {
+    fName: req.user.fName,
+    lName: req.user.lName,
+    wNumber: req.user.wNumber,
+    email: req.user.email,
+    collegeName: req.user.collegeName,
+  });
 });
 
 module.exports = router;
