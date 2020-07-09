@@ -1,8 +1,15 @@
 const mongoose = require("mongoose");
-
-mongoose.connect("mongodb://127.0.0.1:27017/dashboard-api", {
-  useCreateIndex: true,
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useFindAndModify: false,
-});
+const { mongoUri } = require("../config/keys");
+mongoose
+  .connect(mongoUri, {
+    useCreateIndex: true,
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+  })
+  .then(() => {
+    console.log("Database Connected");
+  })
+  .catch((e) => {
+    console.log("Database Error ", e);
+  });

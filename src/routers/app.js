@@ -8,7 +8,11 @@ router.get("/", function (req, res) {
 });
 
 router.get("/profile", function (req, res) {
-  res.render("profile");
+  res.render("profile", { name: req.user.username });
+});
+router.get("/logout", function (req, res) {
+  req.logout();
+  res.redirect("/logout");
 });
 
 module.exports = router;

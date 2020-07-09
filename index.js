@@ -6,7 +6,9 @@ const localStrategy = require("passport-local");
 const passportLocalMongoose = require("passport-local-mongoose");
 const userRouter = require("./src/routers/user");
 const appRouter = require("./src/routers/app");
+const authRouter = require("./src/routers/auth");
 const User = require("./src/models/user");
+const GoogleStrategy = require("./src/config/googlePassportSetup");
 
 const port = process.env.PORT || 3000;
 
@@ -19,6 +21,7 @@ app.use(
     saveUninitialized: false,
   })
 );
+
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -29,6 +32,7 @@ passport.deserializeUser(User.deserializeUser());
 app.use(express.json());
 app.use(userRouter);
 app.use(appRouter);
+app.use("/auth", authRouter);
 
 app.listen(port, () => {
   console.log(`Server is up on port ${port}!`);
