@@ -2,7 +2,7 @@ const express = require("express");
 require("./src/db/mongoose");
 const passport = require("passport");
 const bodyParser = require("body-parser");
-const localStrategy = require("passport-local");
+const LocalStrategy = require("passport-local");
 const passportLocalMongoose = require("passport-local-mongoose");
 const userRouter = require("./src/routers/user");
 const appRouter = require("./src/routers/app");
@@ -25,6 +25,35 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+passport.use(
+  new LocalStrategy(
+    {
+      usernameField: "email",
+    },
+    User.authenticate()
+  )
+);
+
+// passport.use(
+//   "signup",
+//   new ocalStrategy(
+//     {
+//       usernameField: "email",
+//       passwordField: "password",
+//       passReqToCallback: true,
+//     },
+//     async (req, email, password, done) => {
+//       try {
+//         const name = req.body.name;
+//         const user = await User.create({ name, email, password });
+//         return done(null, user);
+//       } catch (error) {
+//         done(error);
+//       }
+//     }
+//   )
+// );
 
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
