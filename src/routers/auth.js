@@ -8,7 +8,7 @@ router.get(
   }
 );
 router.get("/google/redirect", passport.authenticate("google"), (req, res) => {
-  res.redirect("/profile");
+  res.redirect("/register");
 });
 
 module.exports = router;
