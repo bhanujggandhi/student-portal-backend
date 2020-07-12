@@ -35,6 +35,7 @@ const userSchema = new mongoose.Schema({
   resetPasswordExpires: Date,
   pImage: String,
   cImage: String,
+  idImage: String,
 });
 
 // Profile Photo

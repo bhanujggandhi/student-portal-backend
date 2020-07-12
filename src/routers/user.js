@@ -29,12 +29,13 @@ router.post("/register", upload, (req, res) => {
     collegeName: req.body.collegeName,
     pImage: req.files[0].filename,
     cImage: req.files[1].filename,
+    idImage: req.files[2].filename,
   });
 
   User.register(user, req.body.password, (err, user) => {
     if (err) {
       console.log(err);
-      return res.render("registersss");
+      return res.render("home");
     }
     passport.authenticate("local")(req, res, (err, user) => {
       res.redirect("/profile");
@@ -52,7 +53,7 @@ router.post(
   "/login",
   passport.authenticate("local", {
     successRedirect: "/profile",
-    failureRedirect: "/login",
+    failureRedirect: "/",
   }),
   (req, res) => {}
 );
