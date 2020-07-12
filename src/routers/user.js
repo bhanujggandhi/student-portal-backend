@@ -6,8 +6,10 @@ const router = new express.Router();
 const nodemailer = require("nodemailer");
 const crypto = require("crypto");
 const async = require("async");
+const multer = require("multer");
 const { use } = require("passport");
 const { gmailId, gmailPassword } = require("../config/keys");
+const upload = require("../config/multer");
 
 const app = express();
 
@@ -17,7 +19,7 @@ router.get("/register", (req, res) => {
   res.render("register");
 });
 
-router.post("/register", (req, res) => {
+router.post("/register", upload, (req, res) => {
   const user = new User({
     username: req.body.username,
     email: req.body.email,
@@ -25,7 +27,11 @@ router.post("/register", (req, res) => {
     lName: req.body.lName,
     wNumber: req.body.wNumber,
     collegeName: req.body.collegeName,
+    pImage: req.files[0].filename,
+    cImage: req.files[1].filename,
   });
+
+  console.log(req.files);
 
   User.register(user, req.body.password, (err, user) => {
     if (err) {

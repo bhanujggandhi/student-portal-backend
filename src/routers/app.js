@@ -15,6 +15,8 @@ router.get("/profile", isLoggedIn, function (req, res) {
     wNumber: req.user.wNumber,
     email: req.user.email,
     collegeName: req.user.collegeName,
+    pImage: req.user.pImage,
+    cImage: req.user.cImage,
   });
 });
 
