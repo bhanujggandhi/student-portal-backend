@@ -31,12 +31,10 @@ router.post("/register", upload, (req, res) => {
     cImage: req.files[1].filename,
   });
 
-  console.log(req.files);
-
   User.register(user, req.body.password, (err, user) => {
     if (err) {
       console.log(err);
-      return res.render("register");
+      return res.render("registersss");
     }
     passport.authenticate("local")(req, res, (err, user) => {
       res.redirect("/profile");
