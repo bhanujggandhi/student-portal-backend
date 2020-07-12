@@ -62,6 +62,7 @@ app.use(express.json());
 app.use(userRouter);
 app.use(appRouter);
 app.use("/auth", authRouter);
+app.use(express.static(__dirname + "/public"));
 
 app.listen(port, () => {
   console.log(`Server is up on port ${port}!`);

@@ -18,6 +18,9 @@ router.get("/profile", isLoggedIn, function (req, res) {
   });
 });
 
+router.get("/dashboard", (req, res) => {
+  res.render("dashboard");
+});
 router.get("/logout", function (req, res) {
   req.logout();
   res.redirect("/");
