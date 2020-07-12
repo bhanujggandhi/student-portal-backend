@@ -27,7 +27,7 @@ router.post("/register", (req, res) => {
     collegeName: req.body.collegeName,
   });
 
-  User.register(user, req.body.password, (err, user) => {
+  User.register(user, req.body.password[0], (err, user) => {
     if (err) {
       console.log(err);
       return res.render("register");

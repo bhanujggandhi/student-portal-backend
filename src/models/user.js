@@ -26,7 +26,7 @@ const userSchema = new mongoose.Schema({
   },
   googleID: {
     type: String,
-    unique: true,
+
     trim: true,
     lowercase: true,
   },
