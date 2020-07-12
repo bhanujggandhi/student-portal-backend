@@ -9,7 +9,7 @@ router.get("/", function (req, res) {
 });
 
 router.get("/profile", isLoggedIn, function (req, res) {
-  res.render("profile", {
+  res.render("dashboard", {
     fName: req.user.fName,
     lName: req.user.lName,
     wNumber: req.user.wNumber,
@@ -18,9 +18,6 @@ router.get("/profile", isLoggedIn, function (req, res) {
   });
 });
 
-router.get("/dashboard", (req, res) => {
-  res.render("dashboard");
-});
 router.get("/logout", function (req, res) {
   req.logout();
   res.redirect("/");
