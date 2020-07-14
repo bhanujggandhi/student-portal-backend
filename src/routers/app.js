@@ -23,6 +23,7 @@ router.get("/profile", isLoggedIn, function (req, res) {
 
 router.get("/logout", function (req, res) {
   req.logout();
+  req.flash("success", "Logged you out!");
   res.redirect("/");
 });
 
