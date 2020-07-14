@@ -6,10 +6,10 @@ const router = new express.Router();
 const nodemailer = require("nodemailer");
 const crypto = require("crypto");
 const async = require("async");
-const multer = require("multer");
-const { use } = require("passport");
 const { gmailId, gmailPassword } = require("../config/keys");
 const upload = require("../config/multer");
+const fs = require("fs");
+const Path = require("path");
 
 const app = express();
 
@@ -223,32 +223,148 @@ router.post("/reset/:token", (req, res) => {
 });
 
 //==================Update===================
-router.patch("/users/me", isLoggedIn, async (req, res) => {
-  const updates = Object.keys(req.body);
-  const allowedUpdates = [
-    "fName",
-    "lName",
-    "wNumber",
-    "email",
-    "password",
-    "collegeName",
-  ];
-  const isValidOperation = updates.every((update) =>
-    allowedUpdates.includes(update)
-  );
-
-  if (!isValidOperation) {
-    return res.status(400).send({ error: "Invalid Update!" });
-  }
-
-  try {
-    updates.forEach((update) => (req.user[update] = req.body[update]));
-    await req.user.save();
-    res.send(req.user);
-  } catch (err) {
-    res.status(400).send(err);
-  }
+router.get("/profile/edit", isLoggedIn, (req, res) => {
+  User.findById(req.user._id, (err, foundUser) => {
+    res.render("editUser", { user: foundUser });
+  });
 });
+
+router.put("/profile", isLoggedIn, upload, (req, res) => {
+  User.findByIdAndUpdate(
+    req.user._id,
+    {
+      username: req.body.username,
+      fName: req.body.fName,
+      lName: req.body.lName,
+      wNumber: req.body.wNumber,
+      collegeName: req.body.collegeName,
+    },
+    (err, updatedUser) => {
+      if (err) {
+        res.redirect("/profile/edit");
+      } else {
+        res.redirect("/profile");
+      }
+    }
+  );
+});
+
+router.get("/changePassword", isLoggedIn, (req, res) => {
+  res.render("changePassword");
+});
+
+router.put("/changePassword", isLoggedIn, (req, res) => {
+  User.findOne(
+    {
+      _id: req.user._id,
+    },
+    (err, user) => {
+      if (err) {
+        throw new Error("Couldn't find user");
+      }
+      if (!user) {
+        return res.redirect("back");
+      }
+      if (req.body.password === req.body.confirm) {
+        user.setPassword(req.body.password, (err) => {
+          if (err) {
+            throw new Error("Couldn't set password");
+          }
+          user.save((err) => {
+            if (err) {
+              throw new Error("Couldn't save user");
+            }
+            res.redirect("/");
+          });
+        });
+      } else {
+        return res.redirect("back");
+      }
+    }
+  );
+});
+
+router.get("/changeProfile", isLoggedIn, (req, res) => {
+  res.render("changeProfile");
+});
+
+router.put("/changeProfile", isLoggedIn, upload, (req, res) => {
+  if (req.user.pImage) {
+    const path = Path.join(__dirname, "../../public/uploads", req.user.pImage);
+    try {
+      fs.unlinkSync(path);
+    } catch (err) {
+      console.log(err);
+    }
+  } else {
+    console.log("No image to delete");
+  }
+  User.findByIdAndUpdate(
+    req.user._id,
+    {
+      pImage: req.files[0].filename,
+    },
+    (err, updatedUser) => {
+      if (err) {
+        res.redirect("back");
+      } else {
+        res.redirect("/profile");
+      }
+    }
+  );
+});
+
+router.get("/changeLogo", isLoggedIn, (req, res) => {
+  res.render("changeLogo");
+});
+
+router.put("/changeLogo", isLoggedIn, upload, (req, res) => {
+  if (req.user.pImage) {
+    const path = Path.join(__dirname, "../../public/uploads", req.user.pImage);
+    try {
+      fs.unlinkSync(path);
+    } catch (err) {
+      console.log(err);
+    }
+  } else {
+    console.log("No image to delete");
+  }
+  User.findByIdAndUpdate(
+    req.user._id,
+    {
+      cImage: req.files[0].filename,
+    },
+    (err, updatedUser) => {
+      if (err) {
+        res.redirect("/changePassword");
+      } else {
+        res.redirect("/profile");
+      }
+    }
+  );
+});
+
+// router.get("/changeProfile", isLoggedIn, (req, res) => {
+//   res.render("changePhoto");
+// });
+
+// router.put("/changeProfile", isLoggedIn, upload, (req, res) => {
+//   User.findByIdAndUpdate(
+//     req.user._id,
+//     {
+//       pImage: req.files[0].filename,
+//       cImage: req.files[1].filename,
+//       idImage: req.files[2].filename,
+//     },
+//     (err, updatedUser) => {
+//       if (err) {
+//         res.redirect("/changePassword");
+//       } else {
+//         res.redirect("/profile");
+//       }
+//     }
+//   );
+// });
 
 //===================Delete=====================
 router.delete("/users/me", isLoggedIn, async (req, res) => {

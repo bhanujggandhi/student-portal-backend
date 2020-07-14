@@ -1,0 +1,13 @@
+<h1>Edit Form</h1>
+
+<form action="/profile?_method=PUT" method="POST" enctype="multipart/form-data">
+  <input type="text" name="fName" value=<%= user.fName %>>
+  <input type="text" name="lName" value=<%= user.lName %>>
+  <input type="text" name="wNumber" value=<%= user.wNumber %> pattern="[1-9]{1}[0-9]{9}">
+  <input type="text" name="collegeName" value=<%= user.collegeName %>>
+  <br>
+  <button class="button-login">Update <i class="fas fa-arrow-circle-right"></i></button>
+</form>
+<a href="/changeProfile"><button>Change profile picture</button></a>
+<a href="/changeLogo"><button>Change logo</button></a>
+<a href="/changePassword"><button>Change Password</button></a>

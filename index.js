@@ -8,6 +8,7 @@ const userRouter = require("./src/routers/user");
 const appRouter = require("./src/routers/app");
 const User = require("./src/models/user");
 const authRouter = require("./src/routers/auth");
+const methodOverride = require("method-override");
 const GoogleStrategy = require("./src/config/googlePassportSetup");
 
 const port = process.env.PORT || 3000;
@@ -22,6 +23,7 @@ app.use(
   })
 );
 
+app.use(methodOverride("_method"));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(bodyParser.urlencoded({ extended: true }));

@@ -9,6 +9,7 @@ router.get("/", function (req, res) {
 });
 
 router.get("/profile", isLoggedIn, function (req, res) {
+  console.log(req.user);
   res.render("dashboard", {
     fName: req.user.fName,
     lName: req.user.lName,
