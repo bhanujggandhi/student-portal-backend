@@ -83,7 +83,7 @@ router.post("/forgot", (req, res, next) => {
       (token, done) => {
         User.findOne({ email: req.body.email }, (err, user) => {
           if (!user) {
-            return res.redirect("/forgot");
+            return res.redirect("/");
           }
 
           user.resetPasswordToken = token;
@@ -126,7 +126,7 @@ router.post("/forgot", (req, res, next) => {
     ],
     (err) => {
       if (err) return next(err);
-      res.redirect("/forgot");
+      res.redirect("/");
     }
   );
 });
@@ -144,7 +144,7 @@ router.get("/reset/:token", (req, res) => {
         throw new Error("Couldn't find user");
       }
       if (!user) {
-        return res.redirect("/forgot");
+        return res.redirect("/");
       }
       res.render("reset", { token: req.params.token });
     }

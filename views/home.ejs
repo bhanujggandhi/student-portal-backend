@@ -74,18 +74,14 @@
         <a href="#" class="close-it"><i class="fas fa-times"></i></a>
         <h4 class="head-ing"><span>Password Recovery</span></h4>
         <div class="send">
-          <input type="text" placeholder="Register Email">
-          <button class="button-login send-otp">Send OTP</button>
+          <form action="/forgot" method="POST">
+            <input type="email" name="email" placeholder="Registered Email">
+            <button class="button-login send-otp">Send Link</button>
+          </form>
         </div>
         <div class="validate">
-          <input type="text" placeholder="OTP"><br>
-          <a href="#">Resend OTP</a><br>
-          <button class="button-login validate-otp">Validate OTP</button>
-        </div>
-        <div class="newpass">
-          <input type="password" placeholder="New Password">
-          <input type="password" placeholder="Confirm Password"><br>
-          <button class="button-login done">Done <i class="fas fa-arrow-circle-right"></i></button>
+          <p style="text-align: center; font-size: 1rem">Verification link sent to the email.</p>
+          <button class="button-login validate-otp done">OKAY</button>
         </div>
       </div>
     </div>

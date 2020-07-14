@@ -27,19 +27,16 @@ $(".send-otp").on("click", function () {
 
 $(".validate-otp").on("click", function () {
   $(".validate").css("display", "none");
-  $(".newpass").css("display", "block");
 });
 
 $(".close-it").on("click", function () {
   $(".forgot-password").css("display", "none");
   $(".send").css("display", "block");
   $(".validate").css("display", "none");
-  $(".newpass").css("display", "none");
 });
 
 $(".done").on("click", function () {
   $(".forgot-password").css("display", "none");
   $(".send").css("display", "block");
   $(".validate").css("display", "none");
-  $(".newpass").css("display", "none");
 });
