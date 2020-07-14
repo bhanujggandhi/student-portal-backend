@@ -13,6 +13,7 @@
     integrity="sha384-xxzQGERXS00kBmZW/6qxqJPyxW3UR0BPsL4c8ILaIWXva5kFi7TxkIIaMiKtqV1Q" crossorigin="anonymous">
 </head>
 
+
 <body>
   <div class="container shadow">
     <div class="register">
@@ -37,7 +38,7 @@
 
         <p style="margin: 0">OR</p>
 
-        <form action="/logingoogle" method="">
+        <form action="/auth/google" method="">
 
           <button class="button-login google">Login with Google</button>
         </form>
@@ -51,22 +52,41 @@
       <div class="container register-toggle">
         <img src="/images/logo.png" class="logo-login">
         <h2 class="head-ing">Register Here</h2>
-        <form action="/register" method="post">
-          <input type="text" name="fName" placeholder="First Name" required autofocus>
-          <input type="text" name="lName" placeholder="Last Name" required>
-          <input type="email" name="email" placeholder="Email" required>
-          <input type="text" name="wNumber" placeholder="Whatsapp Number" pattern="[1-9]{1}[0-9]{9}" required>
-          <label for="profile">Profile Photo</label>
-          <input type="file" name="pPhoto" id="profile" placeholder="Profile Photo" required>
-          <input type="text" name="collegeName" placeholder="College Name" required>
-          <label for="coll-logo">College Logo</label>
-          <input type="file" name="collegeLogo" id="coll-logo" placeholder="College Logo" required>
-          <label for="coll-id">College ID</label>
-          <input type="file" name="collegeLogo" id="coll-id" placeholder="College ID" required>
-          <input type="password" name="password" placeholder="Password" required>
-          <input type="password" name="password" placeholder="Confirm Password" required><br>
-          <button class="button-login">Register <i class="fas fa-arrow-circle-right"></i></button>
-        </form>
+        <div id="generalRegister">
+          <form action="/register" method="post">
+            <input type="text" name="fName" placeholder="First Name" required autofocus>
+            <input type="text" name="lName" placeholder="Last Name" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="text" name="wNumber" placeholder="Whatsapp Number" pattern="[1-9]{1}[0-9]{9}" required>
+            <label for="profile">Profile Photo</label>
+            <input type="file" name="pPhoto" id="profile" placeholder="Profile Photo" required>
+            <input type="text" name="collegeName" placeholder="College Name" required>
+            <label for="coll-logo">College Logo</label>
+            <input type="file" name="collegeLogo" id="coll-logo" placeholder="College Logo" required>
+            <label for="coll-id">College ID</label>
+            <input type="file" name="collegeLogo" id="coll-id" placeholder="College ID" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <input type="password" name="password" placeholder="Confirm Password" required><br>
+            <button class="button-login">Register <i class="fas fa-arrow-circle-right"></i></button>
+          </form>
+        </div>
+        <div id="googleRegister" style="display: none;">
+          <p>Please Fill below Fields:</p>
+          <form action="/auth/register" method="post">
+
+            <input type="text" name="gwNumber" placeholder="Whatsapp Number" pattern="[1-9]{1}[0-9]{9}" required>
+            <label for="gprofile">Profile Photo</label>
+            <input type="file" name="gpPhoto" id="gprofile" placeholder="Profile Photo" required>
+            <input type="text" name="gcollegeName" placeholder="College Name" required>
+            <label for="gcoll-logo">College Logo</label>
+            <input type="file" name="gcollegeLogo" id="gcoll-logo" placeholder="College Logo" required>
+            <label for="gcoll-id">College ID</label>
+            <input type="file" name="gcollegeLogo" id="gcoll-id" placeholder="College ID" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <input type="password" name="password" placeholder="Confirm Password" required><br>
+            <button class="button-login">Register <i class="fas fa-arrow-circle-right"></i></button>
+          </form>
+        </div>
         <div class="register-login">
           <hr>
           <h2>Already Registered!</h2>
@@ -98,6 +118,19 @@
   </script>
   <script src="/js/registerScript.js"></script>
 </body>
+<script>
+  let a
+  if (`<%=isGoogle%>`) {
+    a = `<%=isGoogle%>`;
+  }
+  console.log(a);
+  if (a === 'true') {
+    $(".toggle-btn").click();
+    $("#googleRegister").css('display', 'block');
+    $("#generalRegister").css('display', 'none');
+
+  }
+</script>
 
 </html>
 

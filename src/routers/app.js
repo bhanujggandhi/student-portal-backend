@@ -5,7 +5,7 @@ const router = new express.Router();
 const app = express();
 
 router.get("/", function (req, res) {
-  res.render("home");
+  res.render("home", { isGoogle: false });
 });
 
 router.get("/profile", isLoggedIn, function (req, res) {
