@@ -1,473 +1,536 @@
 /*Start Global Style*/
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  <<<<<<< HEAD box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    background: url(bg.png);
-    background-position: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    font-family: 'Montserrat', sans-serif;
-    z-index: -1;
+  background: url(bg.png);
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: 'Montserrat', sans-serif;
+  z-index: -1;
 }
 
 input {
-    height: 2.4rem;
-    width: 100%;
-    margin: 2% 0;
-    padding: 1%;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 500;
-    border: none;
-    border-bottom: 2px solid #9a9a9a;
+  height: 2.4rem;
+  width: 100%;
+  margin: 2% 0;
+  padding: 1%;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  border: none;
+  border-bottom: 2px solid #9a9a9a;
 }
 
 input:focus {
-    outline: none;
-    border-bottom: 4px solid #0099ff;
+  outline: none;
+  border-bottom: 4px solid #0099ff;
 }
 
 input::placeholder {
-    color: #777777;
+  color: #777777;
 }
 
 label {
-    font-family: 'Montserrat', sans-serif;
-    text-align: left;
-    float: left;
-    margin-bottom: -10px;
-    margin-left: 1%;
-    margin-top: 2%;
-    font-weight: 500;
-    color: #777777;
+  font-family: 'Montserrat', sans-serif;
+  text-align: left;
+  float: left;
+  margin-bottom: -10px;
+  margin-left: 1%;
+  margin-top: 2%;
+  font-weight: 500;
+  color: #777777;
 }
 
 .container {
-    width: 90%;
-    margin: auto;
-    padding: 20px;
-    height: 100%;
+  width: 90%;
+  margin: auto;
+  padding: 20px;
+  height: 100%;
 }
 
 .logo {
-    width: 350px;
+  width: 350px;
+  =======box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
+body {
+  background: url(../images/bg.png);
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: 'Montserrat', sans-serif;
+  z-index: -1;
+}
+
+input {
+  height: 2.4rem;
+  width: 100%;
+  margin: 2% 0;
+  padding: 1%;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  border: none;
+  border-bottom: 2px solid #9a9a9a;
+}
+
+input:focus {
+  outline: none;
+  border-bottom: 4px solid #0099ff;
+}
+
+input::placeholder {
+  color: #777777;
+}
+
+label {
+  font-family: 'Montserrat', sans-serif;
+  text-align: left;
+  float: left;
+  margin-bottom: -10px;
+  margin-left: 1%;
+  margin-top: 2%;
+  font-weight: 500;
+  color: #777777;
+}
+
+.container {
+  width: 90%;
+  margin: auto;
+  padding: 20px;
+  height: 100%;
+}
+
+.logo {
+  width: 350px;
+  >>>>>>>70fd67b70f3bda04e719042f45c45e0c4e903543
 }
 
 .login,
 .register {
-    width: 50%
+  width: 50%
 }
 
 /*Start Login Style*/
 .login {
-    float: right;
-    background-color: #fff;
-    height: 100%;
-    border-radius: 0 10px 10px 0;
-    text-align: center;
-    padding: 50px 0;
-    overflow: scroll;
+
+  float: right;
+  background-color: #fff;
+  height: 100%;
+  border-radius: 0 10px 10px 0;
+  text-align: center;
+  padding: 50px 0;
+  overflow: scroll;
 }
 
 .login h1 {
-    margin-bottom: 40px;
-    font-size: 2.5em;
+  margin-bottom: 40px;
+  font-size: 2.5em;
 }
 
 .logo-login {
-    width: 350px;
-    display: none;
+  width: 350px;
+  display: none;
 }
 
 .register-login {
-    display: none;
+  display: none;
 }
 
 .login-heading {
-    display: none;
+  display: none;
 }
 
 /*
 input[type="email"] , input[type="password"]{
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 30px;
-    border: none;
-    background-color: #eeeeef;
+
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 30px;
+  border: none;
+  background-color: #eeeeef;
 }
 */
 .login span {
-    float: left
+  float: left
 }
 
 .login a {
-    float: right;
-    text-decoration: none;
-    color: #000;
-    transition: 0.3s all ease-in-out;
+  float: right;
+  text-decoration: none;
+  color: #000;
+  transition: 0.3s all ease-in-out;
 }
 
 .login a:hover {
-    color: #0099ff;
-    font-weight: bold
+  color: #0099ff;
+  font-weight: bold
 }
 
 .button-login {
-    width: 100%;
-    margin: 30px 0;
-    padding: 10px;
-    border: none;
-    background-color: #0099ff;
-    color: #fff;
-    font-size: 20px;
-    cursor: pointer;
-    transition: 0.3s all ease-in-out;
+  width: 100%;
+  margin: 30px 0;
+  padding: 10px;
+  border: none;
+  background-color: #0099ff;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  transition: 0.3s all ease-in-out;
 }
 
 .button-login:hover {
-    width: 97%;
-    font-size: 22px;
-    border-radius: 5px;
+  width: 97%;
+  font-size: 22px;
+  border-radius: 5px;
+
 
 }
 
 .button-login:focus {
-    outline: none;
+
+  outline: none;
 }
 
 .login hr {
-    width: 30%;
-    display: inline-block
+  width: 30%;
+  display: inline-block
 }
 
 .login p {
-    display: inline-block;
-    margin: 0px 10px 30px;
+  display: inline-block;
+  margin: 0px 10px 30px;
 }
 
 .login ul {
-    list-style: none;
-    margin-bottom: 40px;
+  list-style: none;
+  margin-bottom: 40px;
 }
 
 .login ul li {
-    display: inline-block;
-    margin-right: 30px;
-    cursor: pointer;
+  display: inline-block;
+  margin-right: 30px;
+  cursor: pointer;
 }
 
 .login ul li:hover {
-    opacity: 0.6
+  opacity: 0.6
 }
 
 .login ul li:last-child {
-    margin-right: 0
+  margin-right: 0
 }
 
 .login .copyright {
-    display: inline-block;
-    float: none;
+  display: inline-block;
+  float: none;
 }
 
 .fa-arrow-circle-right:before {
-    display: none;
+  display: none;
+
 }
 
 /*Start Register Style*/
 .register {
-    float: left;
-    background: #0099ff;
-    height: 100%;
-    color: #fff;
-    border-radius: 10px 0 0 10px;
-    text-align: center;
-    padding: 20px 0;
+
+  float: left;
+  background: #0099ff;
+  height: 100%;
+  color: #fff;
+  border-radius: 10px 0 0 10px;
+  text-align: center;
+  padding: 20px 0;
 }
 
 .register h2 {
-    margin: 60px 0 30px;
-    font-size: 39px;
-    line-height: 1.7;
-    font-weight: 700;
+  margin: 60px 0 30px;
+  font-size: 39px;
+  line-height: 1.7;
+  font-weight: 700;
 }
 
 .register button {
-    background-color: transparent;
-    border: 1px solid #FFF;
-    border-radius: 20px;
-    padding: 10px 20px;
-    color: #fff;
-    font-size: 20px;
-    text-transform: uppercase;
-    transition: 0.2s all ease-in-out;
+  background-color: transparent;
+  border: 1px solid #FFF;
+  border-radius: 20px;
+  padding: 10px 20px;
+  color: #fff;
+  font-size: 20px;
+  text-transform: uppercase;
+  transition: 0.2s all ease-in-out;
 }
 
 .register button:hover {
-    color: #0099ff;
-    background-color: #fff;
-    cursor: pointer;
+  color: #0099ff;
+  background-color: #fff;
+  cursor: pointer;
 }
 
 .head-ing {
-    font-weight: 700;
-    font-size: 45px;
-    color: #0099ff;
+  font-weight: 700;
+  font-size: 45px;
+  color: #0099ff;
 }
 
 .register-toggle {
-    display: none;
-    padding: 0;
+  display: none;
+  padding: 0;
 }
 
 .to-register:focus {
-    outline: none;
+  outline: none;
 }
 
 .to-login:focus {
-    outline: none;
+  outline: none;
 }
 
 .forgot-password {
-    position: absolute;
-    height: 100vh;
-    width: 100vw;
-    background-color: rgba(111, 111, 111, 0.84);
-    display: none;
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(111, 111, 111, 0.84);
+  display: none;
 }
 
 .forgot-password i {
-    position: absolute;
-    left: 12%;
-    top: 10%;
-    font-size: 2rem;
-    color: #0099ff;
-    cursor: pointer;
+  position: absolute;
+  left: 12%;
+  top: 10%;
+  font-size: 2rem;
+  color: #0099ff;
+  cursor: pointer;
 }
 
 .to-display {
-    padding: 5%;
-    width: 40%;
-    height: 70%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    z-index: 2;
-    border-radius: 20px;
+  padding: 5%;
+  width: 40%;
+  height: 70%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  z-index: 2;
+  border-radius: 20px;
 }
 
 .to-display h4 {
-    text-align: center;
-    font-size: 2.5rem;
-    margin: 15% 2%;
+  text-align: center;
+  font-size: 2.5rem;
+  margin: 15% 2%;
 }
 
 .to-display button {
-    width: 50%;
-    margin-left: 25%;
-    text-align: center;
-    transition: 0.3s all ease-in-out;
+  width: 50%;
+  margin-left: 25%;
+  text-align: center;
+  transition: 0.3s all ease-in-out;
 }
 
 .to-display button:focus {
-    outline: none;
+  outline: none;
 }
 
 .to-display button:hover {
-    width: 50%;
-    font-size: 22px;
-    border-radius: 5px;
+  width: 50%;
+  font-size: 22px;
+  border-radius: 5px;
 }
 
 .validate {
-    display: none;
+  display: none;
 }
 
 .newpass {
-    display: none;
+  display: none;
 }
 
 @media screen and (max-width: 768px) {
-    body {
-        font-size: 0.8rem;    
-    }
-    .container {
-        width: 95%;
-    }
+  body {
+    font-size: 0.8rem;
+  }
 
-    .register {
-        display: none;
-    }
+  .container {
+    width: 95%;
+  }
 
-    .login {
-        width: 100%;
-        overflow: scroll;
-        padding: 20px 0;
-    }
+  .register {
+    display: none;
+  }
 
-    .register-login {
-        display: block;
-    }
+  .login {
+    width: 100%;
+    overflow: scroll;
+    padding: 20px 0;
+  }
 
-    hr {
-        border-top: 4px dotted #0099ff;
-    }
+  .register-login {
+    display: block;
+  }
 
-    .register-login h2 {
-        font-size: 25px;
-    }
+  hr {
+    border-top: 4px dotted #0099ff;
+  }
 
-    .logo-login {
-        width: 70%;
-        margin: auto;
-        display: block;
-    }
+  .register-login h2 {
+    font-size: 25px;
+  }
 
-    .head-ing {
-        font-size: 35px;
-    }
+  .logo-login {
+    width: 70%;
+    margin: auto;
+    display: block;
+  }
 
-    .to-display {
-        width: 60%;
-        height: 50%;
-    }
+  .head-ing {
+    font-size: 35px;
+  }
 
-    .to-display h4 {
-        font-size: 1.5rem;
-    }
+  .to-display {
+    width: 60%;
+    height: 50%;
+  }
 
-    .forgot-password i {
-        position: absolute;
-        left: 8%;
-        top: 5%;
-        font-size: 2rem;
-    }
+  .to-display h4 {
+    font-size: 1.5rem;
+  }
 
-    .to-display button {
-        width: 65%;
-        font-size: 1rem;
-        margin-left: 15%;
-        text-align: center;
-        transition: 0.3s all ease-in-out;
-    }
+  .forgot-password i {
+    position: absolute;
+    left: 8%;
+    top: 5%;
+    font-size: 2rem;
+  }
 
-    .to-display button:focus {
-        outline: none;
-    }
+  .to-display button {
+    width: 65%;
+    font-size: 1rem;
+    margin-left: 15%;
+    text-align: center;
+    transition: 0.3s all ease-in-out;
+  }
 
-    .to-display button:hover {
-        width: 65%;
-        border-radius: 5px;
-    }
+  .to-display button:focus {
+    outline: none;
+  }
+
+  .to-display button:hover {
+    width: 65%;
+    border-radius: 5px;
+  }
 }
 
 @media screen and (width: 1024px) {
-    body {
-        font-size: 1.5rem;    
-    }
-    
-    .container {
-        width: 95%;
-    }
+  body {
+    font-size: 1.5rem;
+  }
 
-    .register {
-        display: none;
-    }
+  .container {
+    width: 95%;
+  }
 
-    .login {
-        width: 100%;
-        overflow: scroll;
-        padding: 20px 0;
-    }
+  .register {
+    display: none;
+  }
 
-    .register-login {
-        display: block;
-    }
+  .login {
+    width: 100%;
+    overflow: scroll;
+    padding: 20px 0;
+  }
 
-    hr {
-        border-top: 4px dotted #0099ff;
-    }
+  .register-login {
+    display: block;
+  }
 
-    .register-login h2 {
-        font-size: 25px;
-    }
+  hr {
+    border-top: 4px dotted #0099ff;
+  }
 
-    .logo-login {
-        width: 70%;
-        margin: auto;
-        display: block;
-    }
+  .register-login h2 {
+    font-size: 25px;
+  }
 
-    .head-ing {
-        font-size: 35px;
-    }
+  .logo-login {
+    width: 70%;
+    margin: auto;
+    display: block;
+  }
 
-    .to-display {
-        width: 60%;
-        height: 50%;
-    }
+  .head-ing {
+    font-size: 35px;
+  }
 
-    .to-display h4 {
-        font-size: 1.5rem;
-    }
+  .to-display {
+    width: 60%;
+    height: 50%;
+  }
 
-    .forgot-password i {
-        position: absolute;
-        left: 8%;
-        top: 5%;
-        font-size: 2rem;
-    }
+  .to-display h4 {
+    font-size: 1.5rem;
+  }
 
-    .to-display button {
-        width: 65%;
-        font-size: 1rem;
-        margin-left: 15%;
-        text-align: center;
-        transition: 0.3s all ease-in-out;
-    }
+  .forgot-password i {
+    position: absolute;
+    left: 8%;
+    top: 5%;
+    font-size: 2rem;
+  }
 
-    .to-display button:focus {
-        outline: none;
-    }
+  .to-display button {
+    width: 65%;
+    font-size: 1rem;
+    margin-left: 15%;
+    text-align: center;
+    transition: 0.3s all ease-in-out;
+  }
 
-    .to-display button:hover {
-        width: 65%;
-        border-radius: 5px;
-    }
+  .to-display button:focus {
+    outline: none;
+  }
+
+  .to-display button:hover {
+    width: 65%;
+    border-radius: 5px;
+  }
 }
 
 @media screen and (max-width: 1140px) {
-    .logo {
-        width: 100%;
-        margin: auto;
-    }
+  .logo {
+    width: 100%;
+    margin: auto;
+  }
 
-    .register h2 {
-        font-size: 30px;
-    }
+  .register h2 {
+    font-size: 30px;
+  }
 
-    .to-display button {
-        width: 70%;
-        font-size: 1.2rem;
-        margin-left: 15%;
-        text-align: center;
-        transition: 0.3s all ease-in-out;
-    }
+  .to-display button {
+    width: 70%;
+    font-size: 1.2rem;
+    margin-left: 15%;
+    text-align: center;
+    transition: 0.3s all ease-in-out;
+  }
 
-    .to-display button:focus {
-        outline: none;
-    }
+  .to-display button:focus {
+    outline: none;
+  }
 
-    .to-display button:hover {
-        width: 70%;
-        font-size: 1.3rem;
-        border-radius: 5px;
-    }
+  .to-display button:hover {
+    width: 70%;
+    font-size: 1.3rem;
+    border-radius: 5px;
+  }
 }

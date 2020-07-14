@@ -6,8 +6,8 @@ const LocalStrategy = require("passport-local");
 const passportLocalMongoose = require("passport-local-mongoose");
 const userRouter = require("./src/routers/user");
 const appRouter = require("./src/routers/app");
-const authRouter = require("./src/routers/auth");
 const User = require("./src/models/user");
+const authRouter = require("./src/routers/auth");
 const GoogleStrategy = require("./src/config/googlePassportSetup");
 
 const port = process.env.PORT || 3000;
@@ -34,26 +34,6 @@ passport.use(
     User.authenticate()
   )
 );
-
-// passport.use(
-//   "signup",
-//   new ocalStrategy(
-//     {
-//       usernameField: "email",
-//       passwordField: "password",
-//       passReqToCallback: true,
-//     },
-//     async (req, email, password, done) => {
-//       try {
-//         const name = req.body.name;
-//         const user = await User.create({ name, email, password });
-//         return done(null, user);
-//       } catch (error) {
-//         done(error);
-//       }
-//     }
-//   )
-// );
 
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());

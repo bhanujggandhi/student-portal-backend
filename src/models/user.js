@@ -4,12 +4,10 @@ const passportLocalMongoose = require("passport-local-mongoose");
 const userSchema = new mongoose.Schema({
   fName: {
     type: String,
-    // required: true,
     trim: true,
   },
   lName: {
     type: String,
-    // required: true,
     trim: true,
   },
   wNumber: {
@@ -26,7 +24,6 @@ const userSchema = new mongoose.Schema({
   },
   googleID: {
     type: String,
-
     trim: true,
     lowercase: true,
   },
@@ -41,6 +38,9 @@ const userSchema = new mongoose.Schema({
   },
   resetPasswordToken: String,
   resetPasswordExpires: Date,
+  pImage: String,
+  cImage: String,
+  idImage: String,
 });
 
 // Profile Photo

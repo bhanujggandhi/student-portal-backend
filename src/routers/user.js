@@ -6,8 +6,10 @@ const router = new express.Router();
 const nodemailer = require("nodemailer");
 const crypto = require("crypto");
 const async = require("async");
+const multer = require("multer");
 const { use } = require("passport");
 const { gmailId, gmailPassword } = require("../config/keys");
+const upload = require("../config/multer");
 
 const app = express();
 
@@ -17,7 +19,7 @@ router.get("/register", (req, res) => {
   res.render("register");
 });
 
-router.post("/register", (req, res) => {
+router.post("/register", upload, (req, res) => {
   const user = new User({
     username: req.body.username,
     email: req.body.email,
@@ -25,12 +27,15 @@ router.post("/register", (req, res) => {
     lName: req.body.lName,
     wNumber: req.body.wNumber,
     collegeName: req.body.collegeName,
+    pImage: req.files[0].filename,
+    cImage: req.files[1].filename,
+    idImage: req.files[2].filename,
   });
 
   User.register(user, req.body.password[0], (err, user) => {
     if (err) {
       console.log(err);
-      return res.render("register");
+      return res.render("home");
     }
     passport.authenticate("local")(req, res, (err, user) => {
       res.redirect("/profile");
@@ -48,7 +53,7 @@ router.post(
   "/login",
   passport.authenticate("local", {
     successRedirect: "/profile",
-    failureRedirect: "/login",
+    failureRedirect: "/",
   }),
   (req, res) => {}
 );
@@ -78,7 +83,7 @@ router.post("/forgot", (req, res, next) => {
       (token, done) => {
         User.findOne({ email: req.body.email }, (err, user) => {
           if (!user) {
-            return res.redirect("/forgot");
+            return res.redirect("/");
           }
 
           user.resetPasswordToken = token;
@@ -121,7 +126,7 @@ router.post("/forgot", (req, res, next) => {
     ],
     (err) => {
       if (err) return next(err);
-      res.redirect("/forgot");
+      res.redirect("/");
     }
   );
 });
@@ -139,7 +144,7 @@ router.get("/reset/:token", (req, res) => {
         throw new Error("Couldn't find user");
       }
       if (!user) {
-        return res.redirect("/forgot");
+        return res.redirect("/");
       }
       res.render("reset", { token: req.params.token });
     }
