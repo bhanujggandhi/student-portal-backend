@@ -1,6 +1,6 @@
 /*Start Global Style*/
 * {
-  <<<<<<< HEAD box-sizing: border-box;
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
@@ -56,63 +56,7 @@ label {
 
 .logo {
   width: 350px;
-  =======box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
 
-body {
-  background: url(../images/bg.png);
-  background-position: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  font-family: 'Montserrat', sans-serif;
-  z-index: -1;
-}
-
-input {
-  height: 2.4rem;
-  width: 100%;
-  margin: 2% 0;
-  padding: 1%;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 500;
-  border: none;
-  border-bottom: 2px solid #9a9a9a;
-}
-
-input:focus {
-  outline: none;
-  border-bottom: 4px solid #0099ff;
-}
-
-input::placeholder {
-  color: #777777;
-}
-
-label {
-  font-family: 'Montserrat', sans-serif;
-  text-align: left;
-  float: left;
-  margin-bottom: -10px;
-  margin-left: 1%;
-  margin-top: 2%;
-  font-weight: 500;
-  color: #777777;
-}
-
-.container {
-  width: 90%;
-  margin: auto;
-  padding: 20px;
-  height: 100%;
-}
-
-.logo {
-  width: 350px;
-  >>>>>>>70fd67b70f3bda04e719042f45c45e0c4e903543
 }
 
 .login,
@@ -122,7 +66,6 @@ label {
 
 /*Start Login Style*/
 .login {
-
   float: right;
   background-color: #fff;
   height: 100%;
@@ -152,7 +95,6 @@ label {
 
 /*
 input[type="email"] , input[type="password"]{
-
   width: 100%;
   padding: 10px;
   margin-bottom: 30px;
@@ -161,7 +103,7 @@ input[type="email"] , input[type="password"]{
 }
 */
 .login span {
-  float: left
+  /*    float: left*/
 }
 
 .login a {
@@ -193,11 +135,9 @@ input[type="email"] , input[type="password"]{
   font-size: 22px;
   border-radius: 5px;
 
-
 }
 
 .button-login:focus {
-
   outline: none;
 }
 
@@ -237,12 +177,10 @@ input[type="email"] , input[type="password"]{
 
 .fa-arrow-circle-right:before {
   display: none;
-
 }
 
 /*Start Register Style*/
 .register {
-
   float: left;
   background: #0099ff;
   height: 100%;
@@ -356,6 +294,12 @@ input[type="email"] , input[type="password"]{
   display: none;
 }
 
+.google {
+  color: #0099ff;
+  background-color: #fff;
+  border: 1px solid #0099ff;
+}
+
 @media screen and (max-width: 768px) {
   body {
     font-size: 0.8rem;
@@ -429,6 +373,10 @@ input[type="email"] , input[type="password"]{
     width: 65%;
     border-radius: 5px;
   }
+}
+
+.alpha {
+  float: left;
 }
 
 @media screen and (width: 1024px) {
