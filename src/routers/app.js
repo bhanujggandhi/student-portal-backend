@@ -5,10 +5,12 @@ const router = new express.Router();
 const app = express();
 
 router.get("/", function (req, res) {
+  req.flash("success", "Welcome to WeCbr.");
   res.render("home");
 });
 
 router.get("/profile", isLoggedIn, function (req, res) {
+  req.flash("error", "Welcome to WeCbr");
   console.log(req.user);
   res.render("dashboard", {
     fName: req.user.fName,

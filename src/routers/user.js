@@ -20,6 +20,7 @@ router.get("/register", (req, res) => {
 });
 
 router.post("/register", upload, (req, res) => {
+  console.log(req.files);
   const user = new User({
     username: req.body.username,
     email: req.body.email,

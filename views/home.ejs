@@ -34,8 +34,13 @@
             <a href="#" class="forgot">Forgot password?</a>
             <button class="button-login">Log In</button>
           </form>
-          <!-- <div class="alert alert-danger" role="alert"> </div>
-          <div class="alert alert-success" role="alert"> </div> -->
+          <% if (error.length > 0) { %>
+          <div class="alert alert-danger" role="alert"><%= error %></div>
+          <% } %>
+
+          <% if (success.length > 0) { %>
+          <div class="alert alert-success" role="alert"><%= success %></div>
+          <% } %>
           <div class="register-login">
             <hr>
             <h2 class="heading-toggle">Not Registered?</h2>

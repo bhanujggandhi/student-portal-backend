@@ -30,10 +30,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// app.use((req, res, next) => {
-//   res.locals.error = req.flash("error");
-//   res.locals.success = req.flash("success");
-// });
+app.use((req, res, next) => {
+  res.locals.error = req.flash("error");
+  res.locals.success = req.flash("success");
+  next();
+});
 
 passport.use(
   new LocalStrategy(
