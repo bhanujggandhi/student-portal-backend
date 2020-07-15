@@ -57,6 +57,14 @@
       <div class="container register-toggle">
         <img src="/images/logo.png" class="logo-login">
         <h2 class="head-ing">Register Here</h2>
+        <div id="signupBtn">
+
+          <form action="/auth/google" method="">
+
+            <button class="button-login google">Sign Up with Google</button>
+          </form>
+          <p style="margin: 0">OR</p>
+        </div>
         <div id="generalRegister">
           <form action="/register" method="post" enctype="multipart/form-data">
             <input type="text" name="fName" placeholder="First Name">
@@ -136,6 +144,7 @@
     $(".toggle-btn").click();
     $("#googleRegister").css('display', 'block');
     $("#generalRegister").css('display', 'none');
+    $("#signupBtn").css('display', 'none');
 
   }
 </script>
