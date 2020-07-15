@@ -6,7 +6,7 @@
 }
 
 body {
-  background: url(../images/bg.png);
+  background: url(bg.png);
   background-position: center;
   display: flex;
   justify-content: center;
@@ -103,7 +103,7 @@ input[type="email"] , input[type="password"]{
 }
 */
 .login span {
-  float: left
+  /*    float: left*/
 }
 
 .login a {
@@ -294,6 +294,12 @@ input[type="email"] , input[type="password"]{
   display: none;
 }
 
+.google {
+  color: #0099ff;
+  background-color: #fff;
+  border: 1px solid #0099ff;
+}
+
 @media screen and (max-width: 768px) {
   body {
     font-size: 0.8rem;
@@ -367,6 +373,10 @@ input[type="email"] , input[type="password"]{
     width: 65%;
     border-radius: 5px;
   }
+}
+
+.alpha {
+  float: left;
 }
 
 @media screen and (width: 1024px) {

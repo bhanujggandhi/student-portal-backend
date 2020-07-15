@@ -21,6 +21,7 @@ passport.use(
       callbackURL: "/auth/google/redirect",
     },
     function (accessToken, refreshToken, profile, done) {
+      //console.log(profile);
       User.findOne({ googleID: profile.id })
         .then((existingUser) => {
           if (existingUser) {
@@ -28,7 +29,7 @@ passport.use(
             done(null, existingUser);
           } else {
             let newUser = new User({
-              username: profile.displayName,
+              fName: profile.displayName,
               googleID: profile.id,
               email: profile._json.email,
             });

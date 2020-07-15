@@ -20,32 +20,28 @@ router.get("/register", (req, res) => {
 });
 
 router.post("/register", upload, (req, res) => {
-  if (req.files.length > 0 && req.body.password === req.body.confirm) {
-    const user = new User({
-      username: req.body.username,
-      email: req.body.email,
-      fName: req.body.fName,
-      lName: req.body.lName,
-      wNumber: req.body.wNumber,
-      collegeName: req.body.collegeName,
-      pImage: req.files[0].filename,
-      cImage: req.files[1].filename,
-      idImage: req.files[2].filename,
-    });
+  console.log(req.files);
+  const user = new User({
+    username: req.body.username,
+    email: req.body.email,
+    fName: req.body.fName,
+    lName: req.body.lName,
+    wNumber: req.body.wNumber,
+    collegeName: req.body.collegeName,
+    pImage: req.files[0].filename,
+    cImage: req.files[1].filename,
+    idImage: req.files[2].filename,
+  });
 
-    User.register(user, req.body.password, (err, user) => {
-      if (err) {
-        console.log(err);
-        return res.render("home");
-      }
-      passport.authenticate("local")(req, res, (err, user) => {
-        res.redirect("/profile");
-      });
+  User.register(user, req.body.password[0], (err, user) => {
+    if (err) {
+      console.log(err);
+      return res.render("home");
+    }
+    passport.authenticate("local")(req, res, (err, user) => {
+      res.redirect("/profile");
     });
-  } else {
-    req.flash("error", "Password doesn't match!");
-    throw new Error("Password doesn't match");
-  }
+  });
 });
 
 //==================Login=======================

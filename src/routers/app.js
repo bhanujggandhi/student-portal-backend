@@ -6,7 +6,7 @@ const app = express();
 
 router.get("/", function (req, res) {
   req.flash("success", "Welcome to WeCbr.");
-  res.render("home");
+  res.render("home", { isGoogle: false });
 });
 
 router.get("/profile", isLoggedIn, function (req, res) {
@@ -21,6 +21,10 @@ router.get("/profile", isLoggedIn, function (req, res) {
     pImage: req.user.pImage,
     cImage: req.user.cImage,
   });
+});
+
+router.get("/dashboard", (req, res) => {
+  res.render("dashboard");
 });
 
 router.get("/logout", function (req, res) {
