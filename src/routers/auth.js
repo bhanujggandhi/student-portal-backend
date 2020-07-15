@@ -11,14 +11,16 @@ router.get(
 );
 router.get("/google/redirect", passport.authenticate("google"), (req, res) => {
   console.log(req.user);
-  res.render("home", { isGoogle: true });
+  if (req.user.collegeName) {
+    res.redirect("/profile");
+  } else res.render("home", { isGoogle: true });
 });
 
 router.post("/register", upload, async (req, res) => {
-  console.log("google register");
-  console.log(req.user);
-  console.log(req.body);
-  console.log(req.files);
+  //  console.log("google register");
+  //console.log(req.user);
+  //console.log(req.body);
+  //console.log(req.files);
   let update = {
     wNumber: req.body.wNumber,
     collegeName: req.body.collegeName,
@@ -30,5 +32,7 @@ router.post("/register", upload, async (req, res) => {
     new: true,
   });
   console.log("u", u);
+  if (u) res.redirect("/profile");
+  else res.redirect("/");
 });
 module.exports = router;
