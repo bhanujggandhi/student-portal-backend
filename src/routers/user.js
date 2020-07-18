@@ -275,7 +275,7 @@ router.put("/changePassword", isLoggedIn, (req, res) => {
         return res.redirect("back");
       }
       if (req.body.password === req.body.confirm) {
-        user.setPassword(req.body.password, (err) => {
+        user.changePassword(req.body.old, req.body.password, (err) => {
           if (err) {
             throw new Error("Couldn't set password");
           }
@@ -288,6 +288,7 @@ router.put("/changePassword", isLoggedIn, (req, res) => {
           });
         });
       } else {
+        res.flash("error", "Couldn't set password");
         return res.redirect("back");
       }
     }
@@ -330,8 +331,8 @@ router.get("/changeLogo", isLoggedIn, (req, res) => {
 });
 
 router.put("/changeLogo", isLoggedIn, upload, (req, res) => {
-  if (req.user.pImage) {
-    const path = Path.join(__dirname, "../../public/uploads", req.user.pImage);
+  if (req.user.cImage) {
+    const path = Path.join(__dirname, "../../public/uploads", req.user.cImage);
     try {
       fs.unlinkSync(path);
     } catch (err) {
