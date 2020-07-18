@@ -7,10 +7,8 @@ const passportLocalMongoose = require("passport-local-mongoose");
 const userRouter = require("./src/routers/user");
 const appRouter = require("./src/routers/app");
 const User = require("./src/models/user");
-const authRouter = require("./src/routers/auth");
 const methodOverride = require("method-override");
 const flash = require("connect-flash");
-const GoogleStrategy = require("./src/config/googlePassportSetup");
 
 const port = process.env.PORT || 3000;
 
@@ -51,7 +49,6 @@ passport.deserializeUser(User.deserializeUser());
 app.use(express.json());
 app.use(userRouter);
 app.use(appRouter);
-app.use("/auth", authRouter);
 app.use(express.static(__dirname + "/public"));
 
 app.listen(port, () => {

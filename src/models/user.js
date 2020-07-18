@@ -32,16 +32,16 @@ const userSchema = new mongoose.Schema({
     type: String,
     trim: true,
   },
+  isManager: {
+    type: Boolean,
+    default: false,
+  },
   resetPasswordToken: String,
   resetPasswordExpires: Date,
   pImage: String,
   cImage: String,
   idImage: String,
 });
-
-// Profile Photo
-// College Logo
-// College ID for verification
 
 userSchema.plugin(passportLocalMongoose, { usernameField: "email" });
 

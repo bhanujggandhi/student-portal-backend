@@ -10,7 +10,6 @@ router.get("/", function (req, res) {
 });
 
 router.get("/profile", isLoggedIn, function (req, res) {
-  req.flash("error", "Welcome to WeCbr");
   console.log(req.user);
   res.render("dashboard", {
     fName: req.user.fName,
@@ -29,7 +28,7 @@ router.get("/dashboard", (req, res) => {
 
 router.get("/logout", function (req, res) {
   req.logout();
-  req.flash("success", "Logged you out!");
+  req.flash("success", "Successfully Logged Out!");
   res.redirect("/");
 });
 

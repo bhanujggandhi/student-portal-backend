@@ -20,7 +20,6 @@ router.get("/register", (req, res) => {
 });
 
 router.post("/register", upload, (req, res) => {
-  console.log(req.files);
   const user = new User({
     username: req.body.username,
     email: req.body.email,
@@ -33,12 +32,24 @@ router.post("/register", upload, (req, res) => {
     idImage: req.files[2].filename,
   });
 
-  User.register(user, req.body.password[0], (err, user) => {
+  if (
+    req.body.email === "gandhibhanuj@gmail.com" ||
+    req.body.email === "mridulgandhi@wecbr.co" ||
+    req.body.email === "rohanarora@wecbr.co"
+  ) {
+    user.isManager = true;
+  }
+
+  User.register(user, req.body.password, (err, user) => {
     if (err) {
       console.log(err);
       return res.render("home");
     }
     passport.authenticate("local")(req, res, (err, user) => {
+      req.flash(
+        "success",
+        "Successfully Signed Up! Nice to meet you, " + req.body.fName
+      );
       res.redirect("/profile");
     });
   });
@@ -46,13 +57,10 @@ router.post("/register", upload, (req, res) => {
 
 //==================Login=======================
 
-router.get("/login", (req, res) => {
-  res.render("login");
-});
-
 router.post(
   "/login",
   passport.authenticate("local", {
+    successFlash: "Welcome back",
     successRedirect: "/profile",
     failureRedirect: "/",
   }),
@@ -275,6 +283,7 @@ router.put("/changePassword", isLoggedIn, (req, res) => {
             if (err) {
               throw new Error("Couldn't save user");
             }
+            req.flash("success", "Successfully Updated Information");
             res.redirect("/");
           });
         });
@@ -309,6 +318,7 @@ router.put("/changeProfile", isLoggedIn, upload, (req, res) => {
       if (err) {
         res.redirect("back");
       } else {
+        req.flash("success", "Successfully Updated Profile Picture");
         res.redirect("/profile");
       }
     }
@@ -339,6 +349,7 @@ router.put("/changeLogo", isLoggedIn, upload, (req, res) => {
       if (err) {
         res.redirect("/changePassword");
       } else {
+        req.flash("success", "Successfully Updated Logo");
         res.redirect("/profile");
       }
     }
