@@ -87,7 +87,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a href="reportingtool.html" class="nav-link text-dark font-italic" id="reportingListItem">
+        <a href="" class="nav-link text-dark font-italic" id="reportingListItem">
           <i class="fa fa-address-card mr-3 text-primary fa-fw"></i> Reporting Tool
         </a>
       </li>
@@ -118,8 +118,10 @@
           <div class="reportingPanel">
             <a href="#" class="btn btn-primary btn-xs pull-left mr-2" id="heading">Reporting Tool</a>
             <input type="button" class="btn btn-primary btn-xs pull-right ml-2 mb-2" value="Previous Reports">
-            <input type="text" class="btn btn-primary btn-xs pull-right ml-2 mb-2" id="monthandyear" disabled
-              placeholder="Month And Year">
+            <input type="text" class="btn btn-primary btn-xs pull-right ml-2 mb-2"
+              value="<%= moment(user.endDate).format('Do MMMM, YYYY')  %> " disabled placeholder="Month And Year">
+            <input type="text" class="btn btn-primary btn-xs pull-right ml-2 mb-2" disabled
+              value="<%= moment(user.startDate).format('Do MMMM, YYYY')  %> " placeholder="Month And Year">
           </div>
 
 

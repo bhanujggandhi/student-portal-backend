@@ -27,7 +27,7 @@ router.get('/dashboard', isLoggedIn, (req, res) => {
 });
 
 router.get('/reportingTool', isLoggedIn, (req, res) => {
-  res.render('reportingTool');
+  res.render('reportingTool', { user: req.user });
 });
 
 router.get('/logout', isLoggedIn, (req, res) => {
