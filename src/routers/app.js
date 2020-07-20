@@ -1,17 +1,17 @@
-const express = require("express");
-const isLoggedIn = require("../../middleware/auth");
+const express = require('express');
+const isLoggedIn = require('../../middleware/auth');
 const router = new express.Router();
 
 const app = express();
 
-router.get("/", function (req, res) {
-  req.flash("success", "Welcome to WeCbr.");
-  res.render("home", { isGoogle: false });
+router.get('/', function (req, res) {
+  req.flash('success', 'Welcome to WeCbr.');
+  res.render('home');
 });
 
-router.get("/profile", isLoggedIn, function (req, res) {
+router.get('/profile', isLoggedIn, function (req, res) {
   console.log(req.user);
-  res.render("dashboard", {
+  res.render('dashboard', {
     fName: req.user.fName,
     lName: req.user.lName,
     wNumber: req.user.wNumber,
@@ -22,14 +22,18 @@ router.get("/profile", isLoggedIn, function (req, res) {
   });
 });
 
-router.get("/dashboard", (req, res) => {
-  res.render("dashboard");
+router.get('/dashboard', isLoggedIn, (req, res) => {
+  res.render('dashboard');
 });
 
-router.get("/logout", function (req, res) {
+router.get('/reportingTool', isLoggedIn, (req, res) => {
+  res.render('reportingTool');
+});
+
+router.get('/logout', isLoggedIn, (req, res) => {
   req.logout();
-  req.flash("success", "Successfully Logged Out!");
-  res.redirect("/");
+  req.flash('success', 'Successfully Logged Out!');
+  res.redirect('/');
 });
 
 module.exports = router;
