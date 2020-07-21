@@ -20,15 +20,18 @@ router.get("/profile", isLoggedIn, function (req, res) {
     collegeName: req.user.collegeName,
     pImage: req.user.pImage,
     cImage: req.user.cImage,
+    isManager: req.user.isManager,
   });
-});
-
-router.get("/dashboard", isLoggedIn, (req, res) => {
-  res.render("dashboard");
 });
 
 router.get("/reportingTool", isLoggedIn, (req, res) => {
   res.render("reportingTool", { user: req.user });
+});
+
+router.get("/partnerDetails", isLoggedIn, async (req, res) => {
+  let partners = await User.find({});
+  console.log(partners);
+  res.render("studentPartners", { user: req.user, partners: partners });
 });
 
 //=====================================================================

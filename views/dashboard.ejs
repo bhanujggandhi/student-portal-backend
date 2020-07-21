@@ -51,6 +51,14 @@
                     Reporting Tool
                 </a>
             </li>
+            <% if (isManager === true){ %>
+            <li class="nav-item">
+                <a href="/partnerDetails" class="nav-link text-dark font-italic">
+                    <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
+                    Student Partners
+                </a>
+            </li>
+            <% } %>
             <li class="nav-item">
                 <a href="/logout" class="nav-link text-dark font-italic">
                     <i class="fa fa-times mr-3 text-primary fa-fw"></i>
