@@ -6,8 +6,11 @@ const router = new express.Router();
 const app = express();
 
 router.get('/', function (req, res) {
-  req.flash('success', 'Welcome to WeCbr.');
-  res.render('home');
+  if (req.isAuthenticated()) {
+    res.redirect('/profile');
+  } else {
+    res.render('home');
+  }
 });
 
 router.get('/profile', isLoggedIn, function (req, res) {
