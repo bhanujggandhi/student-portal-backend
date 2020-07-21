@@ -20,7 +20,6 @@ router.get("/register", (req, res) => {
 });
 
 router.post("/register", upload, (req, res) => {
-  console.log(req.files);
   const user = new User({
     username: req.body.username,
     email: req.body.email,
@@ -33,12 +32,25 @@ router.post("/register", upload, (req, res) => {
     idImage: req.files[2].filename,
   });
 
-  User.register(user, req.body.password[0], (err, user) => {
+  if (
+    req.body.email === "gandhibhanuj@gmail.com" ||
+    req.body.email === "mridulgandhi@wecbr.co" ||
+    req.body.email === "rohanarora@wecbr.co" ||
+    req.body.email === "sachinnegi808@gmail.com"
+  ) {
+    user.isManager = true;
+  }
+
+  User.register(user, req.body.password, (err, user) => {
     if (err) {
       console.log(err);
       return res.render("home");
     }
     passport.authenticate("local")(req, res, (err, user) => {
+      req.flash(
+        "success",
+        "Successfully Signed Up! Nice to meet you, " + req.body.fName
+      );
       res.redirect("/profile");
     });
   });
@@ -46,13 +58,10 @@ router.post("/register", upload, (req, res) => {
 
 //==================Login=======================
 
-router.get("/login", (req, res) => {
-  res.render("login");
-});
-
 router.post(
   "/login",
   passport.authenticate("local", {
+    successFlash: "Welcome back",
     successRedirect: "/profile",
     failureRedirect: "/",
   }),
@@ -63,7 +72,23 @@ router.post(
 
 router.get("/logout", isLoggedIn, (req, res) => {
   req.logout();
+  req.flash("success", "Successfully Logged Out!");
   res.redirect("/");
+});
+
+//=======================User profile================
+router.get("/users/:id", isLoggedIn, (req, res) => {
+  if (req.user.isManager) {
+    User.findById(req.params.id)
+      .then((foundUser) => {
+        res.render("userProfile", { user: foundUser });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  } else {
+    res.render("err404");
+  }
 });
 
 //=================Reset=======================
@@ -267,7 +292,7 @@ router.put("/changePassword", isLoggedIn, (req, res) => {
         return res.redirect("back");
       }
       if (req.body.password === req.body.confirm) {
-        user.setPassword(req.body.password, (err) => {
+        user.changePassword(req.body.old, req.body.password, (err) => {
           if (err) {
             throw new Error("Couldn't set password");
           }
@@ -275,10 +300,12 @@ router.put("/changePassword", isLoggedIn, (req, res) => {
             if (err) {
               throw new Error("Couldn't save user");
             }
+            req.flash("success", "Successfully Updated Information");
             res.redirect("/");
           });
         });
       } else {
+        res.flash("error", "Couldn't set password");
         return res.redirect("back");
       }
     }
@@ -309,6 +336,7 @@ router.put("/changeProfile", isLoggedIn, upload, (req, res) => {
       if (err) {
         res.redirect("back");
       } else {
+        req.flash("success", "Successfully Updated Profile Picture");
         res.redirect("/profile");
       }
     }
@@ -320,8 +348,8 @@ router.get("/changeLogo", isLoggedIn, (req, res) => {
 });
 
 router.put("/changeLogo", isLoggedIn, upload, (req, res) => {
-  if (req.user.pImage) {
-    const path = Path.join(__dirname, "../../public/uploads", req.user.pImage);
+  if (req.user.cImage) {
+    const path = Path.join(__dirname, "../../public/uploads", req.user.cImage);
     try {
       fs.unlinkSync(path);
     } catch (err) {
@@ -339,6 +367,7 @@ router.put("/changeLogo", isLoggedIn, upload, (req, res) => {
       if (err) {
         res.redirect("/changePassword");
       } else {
+        req.flash("success", "Successfully Updated Logo");
         res.redirect("/profile");
       }
     }

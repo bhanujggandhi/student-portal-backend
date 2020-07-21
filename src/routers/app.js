@@ -1,4 +1,5 @@
 const express = require("express");
+const User = require("../models/user");
 const isLoggedIn = require("../../middleware/auth");
 const router = new express.Router();
 
@@ -10,7 +11,6 @@ router.get("/", function (req, res) {
 });
 
 router.get("/profile", isLoggedIn, function (req, res) {
-  req.flash("error", "Welcome to WeCbr");
   console.log(req.user);
   res.render("dashboard", {
     fName: req.user.fName,
@@ -23,14 +23,27 @@ router.get("/profile", isLoggedIn, function (req, res) {
   });
 });
 
-router.get("/dashboard", (req, res) => {
+router.get("/dashboard", isLoggedIn, (req, res) => {
   res.render("dashboard");
 });
 
-router.get("/logout", function (req, res) {
-  req.logout();
-  req.flash("success", "Logged you out!");
-  res.redirect("/");
+router.get("/reportingTool", isLoggedIn, (req, res) => {
+  res.render("reportingTool", { user: req.user });
+});
+
+//=====================================================================
+router.get("/allUsers", isLoggedIn, (req, res) => {
+  if (req.user.isManager) {
+    User.find({})
+      .then((foundUsers) => {
+        res.render("allUsers", { users: foundUsers });
+      })
+      .catch((err) => {
+        throw new Error("Not found!", err);
+      });
+  } else {
+    res.render("err404");
+  }
 });
 
 module.exports = router;

@@ -4,4 +4,4 @@
 node_modules/
 src/config/keys.js
 
-public/uploads/
+public/uploads/*

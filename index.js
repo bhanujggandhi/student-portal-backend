@@ -6,10 +6,11 @@ const LocalStrategy = require("passport-local");
 const passportLocalMongoose = require("passport-local-mongoose");
 const userRouter = require("./src/routers/user");
 const appRouter = require("./src/routers/app");
-const User = require("./src/models/user");
 const authRouter = require("./src/routers/auth");
+const User = require("./src/models/user");
 const methodOverride = require("method-override");
 const flash = require("connect-flash");
+const moment = require("moment");
 const GoogleStrategy = require("./src/config/googlePassportSetup");
 
 const port = process.env.PORT || 3000;
@@ -33,6 +34,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use((req, res, next) => {
   res.locals.error = req.flash("error");
   res.locals.success = req.flash("success");
+  res.locals.moment = moment;
   next();
 });
 

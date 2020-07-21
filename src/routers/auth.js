@@ -10,7 +10,6 @@ router.get(
   }
 );
 router.get("/google/redirect", passport.authenticate("google"), (req, res) => {
-  console.log(req.user);
   if (req.user.collegeName) {
     res.redirect("/profile");
   } else res.render("home", { isGoogle: true });
@@ -28,6 +27,7 @@ router.post("/register", upload, async (req, res) => {
     cImage: req.files[1].filename,
     idImage: req.files[2].filename,
   };
+  if (req.user.email === "sachinnegi808@gmail.com") update.isManager = true;
   let u = await User.findOneAndUpdate({ googleID: req.user.googleID }, update, {
     new: true,
   });
