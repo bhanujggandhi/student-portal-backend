@@ -1,4 +1,5 @@
 const express = require('express');
+const User = require('../models/user');
 const isLoggedIn = require('../../middleware/auth');
 const router = new express.Router();
 
@@ -30,10 +31,19 @@ router.get('/reportingTool', isLoggedIn, (req, res) => {
   res.render('reportingTool', { user: req.user });
 });
 
-router.get('/logout', isLoggedIn, (req, res) => {
-  req.logout();
-  req.flash('success', 'Successfully Logged Out!');
-  res.redirect('/');
+//=====================================================================
+router.get('/allUsers', isLoggedIn, (req, res) => {
+  if (req.user.isManager) {
+    User.find({})
+      .then((foundUsers) => {
+        res.render('allUsers', { users: foundUsers });
+      })
+      .catch((err) => {
+        throw new Error('Not found!', err);
+      });
+  } else {
+    res.render('err404');
+  }
 });
 
 module.exports = router;
