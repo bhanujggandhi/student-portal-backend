@@ -64,6 +64,13 @@
                 $('#monthandyear').val(currentDate);
             });
         })(jQuery);
+
+        function handleClick(box) {
+            console.log(box.id);
+            if (box.checked === true)
+                window.location.pathname = '/assignManager/' + box.id
+            else window.location.pathname = '/unassignManager/' + box.id
+        }
     </script>
     <style>
         table {
@@ -97,7 +104,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="" class="nav-link text-dark font-italic" id="reportingListItem">
+                <a href="/reportingTool" class="nav-link text-dark font-italic" id="reportingListItem">
                     <i class="fa fa-address-card mr-3 text-primary fa-fw"></i> Reporting Tool
                 </a>
             </li>
@@ -153,13 +160,16 @@
                             Position
                         </th>
                         <th>
-                            Starting Month
+                            Group Number
                         </th>
                         <th>
-                            Ending Month
+                            Score
                         </th>
                         <th>
-                            Mail
+                            Percentage
+                        </th>
+                        <th>
+                            Manager
                         </th>
                     </tr>
 
@@ -169,16 +179,19 @@
                         <td> <img src="/uploads/<%= partners[i].pImage %> " alt="" width="50" height="50" /></td>
                         <td><%=partners[i].fName%></td>
                         <td>Admin</td>
-                        <td><%=partners[i].startDate.toString().slice(0,16)%></td>
-                        <td><%=partners[i].endDate.toString().slice(0,16)%></td>
-                        <td><i class="fa fa-envelope" aria-hidden="true"></i></td>
+                        <td>988268719</td>
+                        <td>11</td>
+                        <td>10</td>
+                        <td><input type="checkbox" id='<%= partners[i]._id%>' onclick="handleClick(this);"
+                                <% if(partners[i].isManager===true){%> checked <% } %>>
+                        </td>
                     </tr>
                     <% } %>
                 </table>
-
             </div>
         </div>
     </div>
+
 </body>
 
 </html>
