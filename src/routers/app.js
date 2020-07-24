@@ -43,4 +43,18 @@ router.get('/performance', isLoggedIn, (req, res) => {
   }
 });
 
+router.get('/studentDetails', isLoggedIn, (req, res) => {
+  if (req.user.isManager) {
+    User.find({})
+      .then((foundUsers) => {
+        res.render('studentDetails', { users: foundUsers });
+      })
+      .catch((err) => {
+        throw new Error('Not found!', err);
+      });
+  } else {
+    res.render('err404');
+  }
+});
+
 module.exports = router;
