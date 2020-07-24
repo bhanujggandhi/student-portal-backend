@@ -7,6 +7,7 @@ const app = express();
 
 router.get('/', function (req, res) {
   if (req.isAuthenticated()) {
+    req.flash('success', 'You are already logged in!');
     res.redirect('/profile');
   } else {
     res.render('home');

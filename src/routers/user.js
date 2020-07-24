@@ -35,23 +35,26 @@ router.post('/register', upload, (req, res) => {
   if (
     req.body.email === 'gandhibhanuj@gmail.com' ||
     req.body.email === 'mridulgandhi@wecbr.co' ||
-    req.body.email === 'rohanarora@wecbr.co'
+    req.body.email === 'rohanarora@wecbr.co' ||
+    req.body.email === 'sachinnegi808@gmail.com'
   ) {
     user.isManager = true;
+    user.position = 'Manager';
   }
 
   User.register(user, req.body.password, (err, user) => {
     if (err) {
-      console.log(err);
-      return res.render('home');
+      req.flash('error', 'User already exists');
+      res.redirect('/');
+    } else {
+      passport.authenticate('local')(req, res, (err, user) => {
+        req.flash(
+          'success',
+          'Successfully Signed Up! Nice to meet you, ' + req.body.fName
+        );
+        res.redirect('/profile');
+      });
     }
-    passport.authenticate('local')(req, res, (err, user) => {
-      req.flash(
-        'success',
-        'Successfully Signed Up! Nice to meet you, ' + req.body.fName
-      );
-      res.redirect('/profile');
-    });
   });
 });
 
@@ -60,9 +63,10 @@ router.post('/register', upload, (req, res) => {
 router.post(
   '/login',
   passport.authenticate('local', {
-    successFlash: 'Welcome back',
+    successFlash: 'Welcome back!',
     successRedirect: '/profile',
     failureRedirect: '/',
+    failureFlash: 'Please check Email or Password',
   }),
   (req, res) => {}
 );

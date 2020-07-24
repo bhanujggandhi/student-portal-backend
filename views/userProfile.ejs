@@ -35,43 +35,6 @@
         </div>
       </div>
     </div>
-
-    <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">Main</p>
-
-    <ul class="nav flex-column bg-white mb-0">
-      <li class="nav-item">
-        <a href="#" class="nav-link text-dark font-italic bg-light">
-          <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
-          Dashboard
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="/reportingTool" class="nav-link text-dark font-italic">
-          <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
-          Reporting Tool
-        </a>
-      </li>
-      <% if(user.isManager) { %>
-      <li class="nav-item">
-        <a href="/performance" class="nav-link text-dark font-italic">
-          <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
-          Performance Page
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="/studentDetails" class="nav-link text-dark font-italic">
-          <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
-          Student Details
-        </a>
-      </li>
-      <% } %>
-      <li class="nav-item">
-        <a href="/logout" class="nav-link text-dark font-italic">
-          <i class="fa fa-times mr-3 text-primary fa-fw"></i>
-          Logout
-        </a>
-      </li>
-    </ul>
   </div>
   <!-- End vertical navbar -->
 
@@ -118,21 +81,20 @@
             </ul>
           </div>
         </div>
-        <div class="col-md-2">
-          <a href="/profile/edit"><input type="submit" class="profile-edit-btn" name="btnAddMore"
-              value="Edit Profile" /></a>
-        </div>
       </div>
       <div class="row">
         <div class="col-md-4">
           <div class="profile-work">
             <p>GROUP DETAILS</p>
             <h6>GROUP NUMBER: <% if(user.group) { %>
-              <td></td>
+              <%= user.group %>
+              <hr>
+              <a class="btn btn-secondary btn-lg active" class="link" href="">GROUP LINK</a>
               <% } else { %>
-              <td>Not Assigned</td>
+              Not Assigned
+              <hr>
+              <a class="btn btn-secondary btn-lg disabled" class="link" href="">GROUP LINK</a>
               <% } %></h6>
-            <a class="btn btn-primary" class="link" href="">GROUP LINK</a>
           </div>
           <div class="profile-work">
             <p>SOCIAL LINKS</p>
