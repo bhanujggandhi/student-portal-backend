@@ -7,7 +7,7 @@ const app = express();
 
 router.get('/', function (req, res) {
   if (req.isAuthenticated()) {
-    req.flash('success', 'You are already logged in!');
+    req.flash('success', 'Welcome Back!');
     res.redirect('/profile');
   } else {
     res.render('home');
@@ -21,15 +21,10 @@ router.get('/profile', isLoggedIn, function (req, res) {
   });
 });
 
-router.get('/dashboard', isLoggedIn, (req, res) => {
-  res.render('dashboard');
-});
-
 router.get('/reportingTool', isLoggedIn, (req, res) => {
   res.render('reportingTool', { user: req.user });
 });
 
-//=====================================================================
 router.get('/performance', isLoggedIn, (req, res) => {
   if (req.user.isManager) {
     User.find({})

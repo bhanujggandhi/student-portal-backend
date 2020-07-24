@@ -31,7 +31,9 @@
       <div class="media d-flex align-items-center"><img src="/images/wecbr.logo.png" alt="..." width="65"
           class="mr-3 rounded-circle img-thumbnail shadow-sm">
         <div class="media-body">
-          <h4 class="m-0" style="font: 1.3rem;">WECBR</h4>
+          <a href="/profile">
+            <h4 class="m-0" style="font: 1.3rem;">WECBR</h4>
+          </a>
         </div>
       </div>
     </div>
@@ -40,20 +42,34 @@
 
     <ul class="nav flex-column bg-white mb-0">
       <li class="nav-item">
-        <a href="#" class="nav-link text-dark font-italic">
+        <a href="/profile" class="nav-link text-dark font-italic bg-light">
           <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
           Dashboard
         </a>
       </li>
       <li class="nav-item">
-        <a href="#" class="nav-link text-dark font-italic">
+        <a href="/reportingTool" class="nav-link text-dark font-italic">
           <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
           Reporting Tool
         </a>
       </li>
+      <% if(user.isManager) { %>
       <li class="nav-item">
-        <a href="#" class="nav-link text-dark font-italic">
-          <i class="fa fa-sign-out mr-3 text-primary fa-fw"></i>
+        <a href="/performance" class="nav-link text-dark font-italic">
+          <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
+          Performance Page
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/studentDetails" class="nav-link text-dark font-italic">
+          <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
+          Student Details
+        </a>
+      </li>
+      <% } %>
+      <li class="nav-item">
+        <a href="/logout" class="nav-link text-dark font-italic">
+          <i class="fa fa-times mr-3 text-primary fa-fw"></i>
           Logout
         </a>
       </li>

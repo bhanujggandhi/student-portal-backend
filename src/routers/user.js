@@ -272,14 +272,11 @@ router.put('/profile', isLoggedIn, upload, (req, res) => {
       if (err) {
         res.redirect('/profile/edit');
       } else {
+        req.flash('success', 'Successfully updated profile!');
         res.redirect('/profile');
       }
     }
   );
-});
-
-router.get('/changePassword', isLoggedIn, (req, res) => {
-  res.render('changePassword');
 });
 
 router.put('/changePassword', isLoggedIn, (req, res) => {
@@ -337,6 +334,7 @@ router.put('/changeProfile', isLoggedIn, upload, (req, res) => {
     },
     (err, updatedUser) => {
       if (err) {
+        req.flash('error', "Couldn't Update Profile Picture");
         res.redirect('back');
       } else {
         req.flash('success', 'Successfully Updated Profile Picture');
@@ -344,10 +342,6 @@ router.put('/changeProfile', isLoggedIn, upload, (req, res) => {
       }
     }
   );
-});
-
-router.get('/changeLogo', isLoggedIn, (req, res) => {
-  res.render('changeLogo');
 });
 
 router.put('/changeLogo', isLoggedIn, upload, (req, res) => {
@@ -368,7 +362,8 @@ router.put('/changeLogo', isLoggedIn, upload, (req, res) => {
     },
     (err, updatedUser) => {
       if (err) {
-        res.redirect('/changePassword');
+        req.flash('error', "Couldn't Update Password");
+        res.redirect('/profile');
       } else {
         req.flash('success', 'Successfully Updated Logo');
         res.redirect('/profile');
