@@ -51,6 +51,20 @@
                     Reporting Tool
                 </a>
             </li>
+            <% if(user.isManager) { %>
+            <li class="nav-item">
+                <a href="/performance" class="nav-link text-dark font-italic">
+                    <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
+                    Performance Page
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/studentDetails" class="nav-link text-dark font-italic">
+                    <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
+                    Student Details
+                </a>
+            </li>
+            <% } %>
             <li class="nav-item">
                 <a href="/logout" class="nav-link text-dark font-italic">
                     <i class="fa fa-times mr-3 text-primary fa-fw"></i>
@@ -74,7 +88,7 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="profile-img">
-                        <img src="/uploads/<%= pImage %> " alt="" />
+                        <img src="/uploads/<%= user.pImage %> " alt="" />
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -87,7 +101,7 @@
                     <% } %>
                     <div class="profile-head">
                         <h5>
-                            <%= fName %> <%= lName %>
+                            <%= user.fName %> <%= user.lName %>
                         </h5>
                         <h6>
                             POSITION
@@ -113,8 +127,12 @@
                 <div class="col-md-4">
                     <div class="profile-work">
                         <p>GROUP DETAILS</p>
-                        <h6>GROUP NUMBER: #</h6>
-                        <a href="">GROUP LINK</a>
+                        <h6>GROUP NUMBER: <% if(user.group) { %>
+                            <td></td>
+                            <% } else { %>
+                            <td>Not Assigned</td>
+                            <% } %></h6>
+                        <a class="btn btn-primary" class="link" href="">GROUP LINK</a>
                     </div>
                     <div class="profile-work">
                         <p>SOCIAL LINKS</p>
@@ -138,7 +156,7 @@
                                     <label>Name</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <p><%= fName %> <%= lName %> </p>
+                                    <p><%= user.fName %> <%= user.lName %> </p>
                                 </div>
                             </div>
                             <div class="row">
@@ -146,7 +164,7 @@
                                     <label>Email</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <p><%= email %> </p>
+                                    <p><%= user.email %> </p>
                                 </div>
                             </div>
                             <div class="row">
@@ -154,7 +172,7 @@
                                     <label>Whatsapp Number</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <p><%= wNumber %> </p>
+                                    <p><%= user.wNumber %> </p>
                                 </div>
                             </div>
                             <div class="row">
@@ -162,7 +180,7 @@
                                     <label>College Name</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <p><%= collegeName %> </p>
+                                    <p><%= user.collegeName %> </p>
                                 </div>
                             </div>
                             <div class="row">
@@ -170,7 +188,7 @@
                                     <label>College Logo</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="media d-flex align-items-center"><img src="/uploads/<%= cImage %> "
+                                    <div class="media d-flex align-items-center"><img src="/uploads/<%= user.cImage %> "
                                             alt="clg logo" width="65"
                                             class="mr-3 rounded-circle img-thumbnail shadow-sm">
                                     </div>
@@ -192,7 +210,7 @@
                                     <label>START DATE</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <p>2-12-2020</p>
+                                    <p><%= moment(user.startDate).format('Do MMM, YYYY')  %></p>
                                 </div>
                             </div>
                             <div class="row">
@@ -200,7 +218,7 @@
                                     <label>END DATE</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <p>1-12-2020</p>
+                                    <p><%= moment(user.endDate).format('Do MMM, YYYY')  %></p>
                                 </div>
                             </div>
                             <div class="row">

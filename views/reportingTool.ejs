@@ -91,6 +91,20 @@
           <i class="fa fa-address-card mr-3 text-primary fa-fw"></i> Reporting Tool
         </a>
       </li>
+      <% if(user.isManager) { %>
+      <li class="nav-item">
+        <a href="/performance" class="nav-link text-dark font-italic">
+          <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
+          Performance Page
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/studentDetails" class="nav-link text-dark font-italic">
+          <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
+          Student Details
+        </a>
+      </li>
+      <% } %>
       <li class="nav-item">
         <a href="/logout" class="nav-link text-dark font-italic">
           <i class="fa fa-times mr-3 text-primary fa-fw"></i> Logout

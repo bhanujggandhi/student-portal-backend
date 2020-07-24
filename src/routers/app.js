@@ -16,13 +16,7 @@ router.get('/', function (req, res) {
 router.get('/profile', isLoggedIn, function (req, res) {
   console.log(req.user);
   res.render('dashboard', {
-    fName: req.user.fName,
-    lName: req.user.lName,
-    wNumber: req.user.wNumber,
-    email: req.user.email,
-    collegeName: req.user.collegeName,
-    pImage: req.user.pImage,
-    cImage: req.user.cImage,
+    user: req.user,
   });
 });
 
@@ -35,11 +29,11 @@ router.get('/reportingTool', isLoggedIn, (req, res) => {
 });
 
 //=====================================================================
-router.get('/allUsers', isLoggedIn, (req, res) => {
+router.get('/performance', isLoggedIn, (req, res) => {
   if (req.user.isManager) {
     User.find({})
       .then((foundUsers) => {
-        res.render('allUsers', { users: foundUsers });
+        res.render('performance', { users: foundUsers });
       })
       .catch((err) => {
         throw new Error('Not found!', err);

@@ -49,6 +49,10 @@ const userSchema = new mongoose.Schema({
   pImage: String,
   cImage: String,
   idImage: String,
+  position: String,
+  group: Number,
+  score: Number,
+  tempManager: Boolean,
 });
 
 userSchema.plugin(passportLocalMongoose, { usernameField: 'email' });
