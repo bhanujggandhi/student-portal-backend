@@ -29,13 +29,13 @@ router.get("/reportingTool", isLoggedIn, (req, res) => {
 });
 
 router.get("/partnerDetails", isLoggedIn, async (req, res) => {
-  let partners = await User.find({});
+  let partners = await User.find({ email: { $ne: req.user.email } });
   console.log(partners);
   res.render("studentPartners", { user: req.user, partners: partners });
 });
 
 router.get("/performance", isLoggedIn, async (req, res) => {
-  let partners = await User.find({});
+  let partners = await User.find({ email: { $ne: req.user.email } });
   console.log(partners);
   res.render("performance", { user: req.user, partners: partners });
 });
