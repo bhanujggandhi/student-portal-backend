@@ -11,11 +11,12 @@ const User = require("./src/models/user");
 const methodOverride = require("method-override");
 const flash = require("connect-flash");
 const moment = require("moment");
+const compression = require("compression");
 const GoogleStrategy = require("./src/config/googlePassportSetup");
-
 const port = process.env.PORT || 3000;
 
 const app = express();
+app.use(compression());
 app.set("view engine", "ejs");
 app.use(
   require("express-session")({

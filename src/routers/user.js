@@ -39,20 +39,22 @@ router.post("/register", upload, (req, res) => {
     req.body.email === "sachinnegi808@gmail.com"
   ) {
     user.isManager = true;
+    user.position = "Manager";
   }
 
   User.register(user, req.body.password, (err, user) => {
     if (err) {
-      console.log(err);
-      return res.render("home");
+      req.flash("error", "User already exists");
+      res.redirect("/");
+    } else {
+      passport.authenticate("local")(req, res, (err, user) => {
+        req.flash(
+          "success",
+          "Successfully Signed Up! Nice to meet you, " + req.body.fName
+        );
+        res.redirect("/profile");
+      });
     }
-    passport.authenticate("local")(req, res, (err, user) => {
-      req.flash(
-        "success",
-        "Successfully Signed Up! Nice to meet you, " + req.body.fName
-      );
-      res.redirect("/profile");
-    });
   });
 });
 
@@ -61,9 +63,10 @@ router.post("/register", upload, (req, res) => {
 router.post(
   "/login",
   passport.authenticate("local", {
-    successFlash: "Welcome back",
+    successFlash: "Welcome back!",
     successRedirect: "/profile",
     failureRedirect: "/",
+    failureFlash: "Please check Email or Password",
   }),
   (req, res) => {}
 );
@@ -269,14 +272,11 @@ router.put("/profile", isLoggedIn, upload, (req, res) => {
       if (err) {
         res.redirect("/profile/edit");
       } else {
+        req.flash("success", "Successfully updated profile!");
         res.redirect("/profile");
       }
     }
   );
-});
-
-router.get("/changePassword", isLoggedIn, (req, res) => {
-  res.render("changePassword");
 });
 
 router.put("/changePassword", isLoggedIn, (req, res) => {
@@ -334,6 +334,7 @@ router.put("/changeProfile", isLoggedIn, upload, (req, res) => {
     },
     (err, updatedUser) => {
       if (err) {
+        req.flash("error", "Couldn't Update Profile Picture");
         res.redirect("back");
       } else {
         req.flash("success", "Successfully Updated Profile Picture");
@@ -341,10 +342,6 @@ router.put("/changeProfile", isLoggedIn, upload, (req, res) => {
       }
     }
   );
-});
-
-router.get("/changeLogo", isLoggedIn, (req, res) => {
-  res.render("changeLogo");
 });
 
 router.put("/changeLogo", isLoggedIn, upload, (req, res) => {
@@ -365,7 +362,8 @@ router.put("/changeLogo", isLoggedIn, upload, (req, res) => {
     },
     (err, updatedUser) => {
       if (err) {
-        res.redirect("/changePassword");
+        req.flash("error", "Couldn't Update Password");
+        res.redirect("/profile");
       } else {
         req.flash("success", "Successfully Updated Logo");
         res.redirect("/profile");

@@ -44,11 +44,18 @@ const userSchema = new mongoose.Schema({
     type: Date,
     default: () => new Date(+new Date() + 3 * 30 * 24 * 60 * 60 * 1000),
   },
+  position: {
+    type: String,
+    default: 'Admin',
+  },
   resetPasswordToken: String,
   resetPasswordExpires: Date,
   pImage: String,
   cImage: String,
   idImage: String,
+  group: Number,
+  score: Number,
+  tempManager: Boolean,
 });
 
 userSchema.plugin(passportLocalMongoose, { usernameField: 'email' });

@@ -6,21 +6,18 @@ const router = new express.Router();
 const app = express();
 
 router.get("/", function (req, res) {
-  req.flash("success", "Welcome to WeCbr.");
-  res.render("home", { isGoogle: false });
+  if (req.isAuthenticated()) {
+    req.flash("success", "Welcome Back!");
+    res.redirect("/profile");
+  } else {
+    res.render("home", { isGoogle: false });
+  }
 });
 
 router.get("/profile", isLoggedIn, function (req, res) {
   console.log(req.user);
   res.render("dashboard", {
-    fName: req.user.fName,
-    lName: req.user.lName,
-    wNumber: req.user.wNumber,
-    email: req.user.email,
-    collegeName: req.user.collegeName,
-    pImage: req.user.pImage,
-    cImage: req.user.cImage,
-    isManager: req.user.isManager,
+    user: req.user,
   });
 });
 
@@ -28,16 +25,33 @@ router.get("/reportingTool", isLoggedIn, (req, res) => {
   res.render("reportingTool", { user: req.user });
 });
 
-router.get("/partnerDetails", isLoggedIn, async (req, res) => {
-  let partners = await User.find({ email: { $ne: req.user.email } });
-  console.log(partners);
-  res.render("studentPartners", { user: req.user, partners: partners });
+router.get("/performance", isLoggedIn, (req, res) => {
+  if (req.user.isManager) {
+    User.find({ email: { $ne: req.user.email } })
+      .then((foundUsers) => {
+        console.log(foundUsers);
+        res.render("performance", { users: foundUsers });
+      })
+      .catch((err) => {
+        throw new Error("Not found!", err);
+      });
+  } else {
+    res.render("err404");
+  }
 });
 
-router.get("/performance", isLoggedIn, async (req, res) => {
-  let partners = await User.find({ email: { $ne: req.user.email } });
-  console.log(partners);
-  res.render("performance", { user: req.user, partners: partners });
+router.get("/studentDetails", isLoggedIn, (req, res) => {
+  if (req.user.isManager) {
+    User.find({ email: { $ne: req.user.email } })
+      .then((foundUsers) => {
+        res.render("studentDetails", { users: foundUsers });
+      })
+      .catch((err) => {
+        throw new Error("Not found!", err);
+      });
+  } else {
+    res.render("err404");
+  }
 });
 
 router.get("/assignManager/:id", (req, res) => {
@@ -68,21 +82,6 @@ router.get("/unassignManager/:id", (req, res) => {
         console.log(e);
       });
   } else res.send("Invalid Request");
-});
-
-//=====================================================================
-router.get("/allUsers", isLoggedIn, (req, res) => {
-  if (req.user.isManager) {
-    User.find({})
-      .then((foundUsers) => {
-        res.render("allUsers", { users: foundUsers });
-      })
-      .catch((err) => {
-        throw new Error("Not found!", err);
-      });
-  } else {
-    res.render("err404");
-  }
 });
 
 module.exports = router;
