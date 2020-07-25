@@ -3,7 +3,6 @@ require('./src/db/mongoose');
 const passport = require('passport');
 const bodyParser = require('body-parser');
 const LocalStrategy = require('passport-local');
-const passportLocalMongoose = require('passport-local-mongoose');
 const userRouter = require('./src/routers/user');
 const appRouter = require('./src/routers/app');
 const User = require('./src/models/user');
@@ -11,6 +10,7 @@ const methodOverride = require('method-override');
 const flash = require('connect-flash');
 const moment = require('moment');
 const compression = require('compression');
+const { SecretKey } = require('./src/config/keys');
 
 const port = process.env.PORT || 3000;
 
@@ -19,7 +19,7 @@ app.use(compression());
 app.set('view engine', 'ejs');
 app.use(
   require('express-session')({
-    secret: 'welcome to wecbr',
+    secret: SecretKey,
     resave: false,
     saveUninitialized: false,
   })
