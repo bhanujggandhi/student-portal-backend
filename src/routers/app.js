@@ -30,7 +30,10 @@ router.get("/performance", isLoggedIn, (req, res) => {
     User.find({ email: { $ne: req.user.email } })
       .then((foundUsers) => {
         console.log(foundUsers);
-        res.render("performance", { users: foundUsers });
+        res.render("performance", {
+          users: foundUsers,
+          Positions: ["Admin", "Expert", "Junior Mentor", "Senior Mentor"],
+        });
       })
       .catch((err) => {
         throw new Error("Not found!", err);
@@ -66,7 +69,9 @@ router.get("/assignManager/:id", (req, res) => {
       .catch((e) => {
         console.log(e);
       });
-  } else res.send("Invalid Request");
+  } else {
+    res.render("err404");
+  }
 });
 
 router.get("/unassignManager/:id", (req, res) => {
@@ -81,7 +86,25 @@ router.get("/unassignManager/:id", (req, res) => {
       .catch((e) => {
         console.log(e);
       });
-  } else res.send("Invalid Request");
+  } else {
+    res.render("err404");
+  }
+});
+
+router.get("/changePosition/:id/:val", (req, res) => {
+  console.log(req.params);
+  if (req.user.isManager === true) {
+    let id = req.params.id;
+    User.findOneAndUpdate({ _id: id }, { position: req.params.val })
+      .then((u) => {
+        res.redirect("/performance");
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  } else {
+    res.render("err404");
+  }
 });
 
 module.exports = router;
