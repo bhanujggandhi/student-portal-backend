@@ -99,10 +99,6 @@ router.get('/users/:id', isLoggedIn, (req, res) => {
 
 //=================Reset=======================
 
-router.get('/forgot', (req, res) => {
-  res.render('forgot');
-});
-
 router.post('/forgot', (req, res, next) => {
   async.waterfall(
     [
@@ -115,6 +111,7 @@ router.post('/forgot', (req, res, next) => {
       (token, done) => {
         User.findOne({ email: req.body.email }, (err, user) => {
           if (!user) {
+            req.flash('error', "User doesn't exist");
             return res.redirect('/');
           }
 
@@ -158,6 +155,7 @@ router.post('/forgot', (req, res, next) => {
     ],
     (err) => {
       if (err) return next(err);
+      req.flash('success', 'Reset code sent to your registered email.');
       res.redirect('/');
     }
   );
