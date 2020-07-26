@@ -26,13 +26,13 @@ router.get("/reportingTool", isLoggedIn, (req, res) => {
 });
 
 router.get("/performance", isLoggedIn, (req, res) => {
-  if (req.user.isManager) {
+  if (req.user.isManager || req.user.tempManager) {
     User.find({ email: { $ne: req.user.email } })
       .then((foundUsers) => {
         console.log(foundUsers);
         res.render("performance", {
           users: foundUsers,
-          Positions: ["Admin", "Expert", "Junior Mentor", "Senior Mentor"],
+          user: req.user,
         });
       })
       .catch((err) => {
@@ -44,7 +44,7 @@ router.get("/performance", isLoggedIn, (req, res) => {
 });
 
 router.get("/studentDetails", isLoggedIn, (req, res) => {
-  if (req.user.isManager) {
+  if (req.user.isManager || req.user.tempManager) {
     User.find({ email: { $ne: req.user.email } })
       .then((foundUsers) => {
         res.render("studentDetails", { users: foundUsers });
@@ -61,7 +61,7 @@ router.get("/assignManager/:id", (req, res) => {
   console.log(req.params.id);
   if (req.user.isManager === true) {
     let id = req.params.id;
-    User.findOneAndUpdate({ _id: id }, { isManager: true })
+    User.findOneAndUpdate({ _id: id }, { tempManager: true })
       .then((u) => {
         console.log(u);
         res.redirect("/performance");
@@ -78,25 +78,9 @@ router.get("/unassignManager/:id", (req, res) => {
   console.log(req.params.id);
   if (req.user.isManager === true) {
     let id = req.params.id;
-    User.findOneAndUpdate({ _id: id }, { isManager: false })
+    User.findOneAndUpdate({ _id: id }, { tempManager: false })
       .then((u) => {
         console.log(u);
-        res.redirect("/performance");
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  } else {
-    res.render("err404");
-  }
-});
-
-router.get("/changePosition/:id/:val", (req, res) => {
-  console.log(req.params);
-  if (req.user.isManager === true) {
-    let id = req.params.id;
-    User.findOneAndUpdate({ _id: id }, { position: req.params.val })
-      .then((u) => {
         res.redirect("/performance");
       })
       .catch((e) => {

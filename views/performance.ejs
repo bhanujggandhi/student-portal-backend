@@ -109,12 +109,9 @@
                                 </td>
                                 <td><a href="/users/<%= users[i]._id %>"><%= users[i].fName %></a></td>
                                 <td>
-                                    <select id='<%= users[i]._id%>' onchange="changePosition(this)">
-                                        <% for(var p in Positions){ %>
-                                        <option value='<%=Positions[p]%>' <% if(users[i].position==Positions[p]) {%>
-                                            selected <%}%>    
-                                            ><%=Positions[p]%></option> <% } %> </select> </td>
-                                            <% if(users[i].group) { %> <td>
+                                    <%= users[i].position%>
+                                </td>
+                                <% if(users[i].group) { %> <td>
                                 </td>
                                 <% } else { %>
                                 <td>Not Assigned</td>
@@ -123,7 +120,8 @@
                                 <td></td>
                                 <td><label class="switch">
                                         <input type="checkbox" id='<%= users[i]._id%>' onclick="handleClick(this);"
-                                            <% if(users[i].isManager===true){%> checked <% } %>>
+                                            <% if(users[i].isManager||users[i].tempManager){%> checked <% } %>
+                                            <% if(!user.isManager){%> disabled <% } %>>
                                         <span class="slider round"></span>
                                     </label>
                                 </td>

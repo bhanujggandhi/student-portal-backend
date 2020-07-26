@@ -17,6 +17,7 @@ const app = express();
 
 router.post("/register", (req, res) => {
   upload(req, res, (err) => {
+    console.log(req.files);
     if (err) {
       req.flash("error", "Image must be in jpg/png format");
       res.redirect("/");
@@ -84,7 +85,7 @@ router.get("/logout", isLoggedIn, (req, res) => {
 
 //=======================User profile================
 router.get("/users/:id", isLoggedIn, (req, res) => {
-  if (req.user.isManager) {
+  if (req.user.isManager || req.user.tempManager) {
     User.findById(req.params.id)
       .then((foundUser) => {
         res.render("userProfile", { user: foundUser });

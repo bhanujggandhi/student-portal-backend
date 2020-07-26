@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const passportLocalMongoose = require('passport-local-mongoose');
+const mongoose = require("mongoose");
+const passportLocalMongoose = require("passport-local-mongoose");
 
 const userSchema = new mongoose.Schema({
   fName: {
@@ -46,7 +46,7 @@ const userSchema = new mongoose.Schema({
   },
   position: {
     type: String,
-    default: 'Admin',
+    default: "Admin",
   },
   resetPasswordToken: String,
   resetPasswordExpires: Date,
@@ -55,11 +55,14 @@ const userSchema = new mongoose.Schema({
   idImage: String,
   group: Number,
   score: Number,
-  tempManager: Boolean,
+  tempManager: {
+    type: Boolean,
+    default: false,
+  },
 });
 
-userSchema.plugin(passportLocalMongoose, { usernameField: 'email' });
+userSchema.plugin(passportLocalMongoose, { usernameField: "email" });
 
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model("User", userSchema);
 
 module.exports = User;
