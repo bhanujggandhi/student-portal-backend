@@ -47,7 +47,7 @@ router.get("/studentDetails", isLoggedIn, (req, res) => {
   if (req.user.isManager || req.user.tempManager) {
     User.find({ email: { $ne: req.user.email } })
       .then((foundUsers) => {
-        res.render("studentDetails", { users: foundUsers });
+        res.render("studentDetails", { users: foundUsers, user: req.user });
       })
       .catch((err) => {
         throw new Error("Not found!", err);
