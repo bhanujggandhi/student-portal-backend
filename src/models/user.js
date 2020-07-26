@@ -54,7 +54,10 @@ const userSchema = new mongoose.Schema({
   cImage: String,
   idImage: String,
   score: Number,
-  tempManager: Boolean,
+  tempManager: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 userSchema.virtual('groups', {

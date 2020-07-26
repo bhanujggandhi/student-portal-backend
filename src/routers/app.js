@@ -28,8 +28,8 @@ router.get('/reportingTool', isLoggedIn, (req, res) => {
 
 router.get('/performance', isLoggedIn, async (req, res) => {
   if (req.user.isManager) {
-    const users = await User.find().populate('groups');
-    res.render('performance', { users });
+    const users = await User.find({}).populate('groups');
+    res.render('performance', { users, user: req.user });
     // User.find({})
     //   .then((foundUsers) => {
     //     res.render('performance', { users: foundUsers });
@@ -43,9 +43,9 @@ router.get('/performance', isLoggedIn, async (req, res) => {
 });
 
 router.get('/studentDetails', isLoggedIn, async (req, res) => {
-  if (req.user.isManager) {
-    const users = await User.find().populate('groups');
-    res.render('studentDetails', { users });
+  if (req.user.isManager || req.user.tempManager) {
+    const users = await User.find({}).populate('groups');
+    res.render('studentDetails', { users, user: req.user });
     // if (req.user.isManager) {
     //   User.find({})
     //     .then((foundUsers) => {
@@ -107,6 +107,34 @@ router.delete('/groups/:id', isLoggedIn, async (req, res) => {
     });
   } catch (err) {
     res.status(500).send();
+  }
+});
+
+router.get('/assignManager/:id', (req, res) => {
+  console.log(req.params.id);
+  if (req.user.isManager === true) {
+    let id = req.params.id;
+    User.findOneAndUpdate({ _id: id }, { tempManager: true })
+      .then((u) => {
+        res.redirect('/performance');
+      })
+      .catch((e) => {});
+  } else {
+    res.render('err404');
+  }
+});
+
+router.get('/unassignManager/:id', (req, res) => {
+  console.log(req.params.id);
+  if (req.user.isManager === true) {
+    let id = req.params.id;
+    User.findOneAndUpdate({ _id: id }, { tempManager: false })
+      .then((u) => {
+        res.redirect('/performance');
+      })
+      .catch((e) => {});
+  } else {
+    res.render('err404');
   }
 });
 

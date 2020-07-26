@@ -2,11 +2,10 @@
 <html>
 
 <head>
+  <title>Student partner Details</title>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-
-  <link href="http://fonts.googleapis.com/css?family=Nunito:300,400,700" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
 
   <!-- jQuery library -->
@@ -16,54 +15,47 @@
   <!-- Latest compiled JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link href="/css/performance.css" rel="stylesheet" type="text/css">
-
-  <title>Student Partner Details </title>
+  <link rel="stylesheet" type="text/css" href="/css/system.css">
+  <link rel="stylesheet" type="text/css" href="/css/vertical-menu.min.css">
+  <script type="text/javascript">
+    $(function () {
+      // Sidebar toggle behavior
+      $('#sidebarCollapse').on('click', function () {
+        $('#sidebar, #content').toggleClass('active');
+      });
+    });
+  </script>
 </head>
 
-<body class="">
-
-  <div class="page-wrapper-custom">
-
-    <header class="header">
-      <div class="header-wrapper">
-        <div class="container">
-          <div class="header-inner">
-            <div class="header-logo">
-              <a href="/profile">
-                <img src="/images/wecbr.logo.png" alt="logo" width="65"
-                  class="mr-3 rounded-circle img-thumbnail shadow-sm">
-                <span>WECBR</span>
-              </a>
-            </div>
-            <!-- /.header-logo -->
-
-            <div class="header-content">
-              <div class="header-bottom">
-                <div class="header-action">
-                  <button type="button" class="btn btn-light bg-white px-4 mb-4"><i class="fa fa-bell"></i></button>
-                  </a>
-                  <!-- /.header-action-inner -->
-                </div>
-                <!-- /.header-action -->
-              </div>
-              <!-- /.header-bottom -->
-            </div>
-            <!-- /.header-content -->
-          </div>
-          <!-- /.header-inner -->
+<body>
+  <!-- Vertical navbar -->
+  <div class="vertical-nav navbar-with-menu fixed-top navbar-semi-light bg-white" id="sidebar">
+    <div class="py-4 px-3 mb-4 bg-light">
+      <div class="media d-flex align-items-center"><img src="/images/wecbr.logo.png" alt="..." width="65"
+          class="mr-3 rounded-circle img-thumbnail shadow-sm">
+        <div class="media-body">
+          <h4 class="m-0" style="font: 1.3rem;">WECBR</h4>
         </div>
-        <!-- /.container -->
       </div>
-      <!-- /.header-wrapper -->
-    </header>
-    <!-- /.header -->
+    </div>
 
+    <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">Main</p>
 
+    <%- include('sidebar.ejs',{user:user}); %>
+  </div>
+  <!-- End vertical navbar -->
 
-
-    <div class="main">
-      <div class="container emp-profile">
+  <!-- Page content holder -->
+  <div class="page-content p-5" id="content">
+    <!-- Toggle button -->
+    <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i
+        class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">MENU</small></button>
+    <button style="float:right;" id="sidebarCollapse" type="button"
+      class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bell mr-2"></i></button>
+    <!-- Demo content -->
+    <div class="separator"></div>
+    <div class="container emp-profile">
+      <div class="main">
         <div class="table-responsive-md">
           <table class="table table-striped table-hover ">
             <thead>
@@ -106,13 +98,10 @@
             </tbody>
           </table>
         </div>
+        <!-- /.container -->
       </div>
-      <!-- /.container -->
+      <!-- /.main -->
     </div>
-    <!-- /.main -->
-
-  </div>
-  <!-- /.page-wrapper -->
 </body>
 
 </html>
