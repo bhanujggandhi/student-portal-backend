@@ -42,15 +42,18 @@ router.get('/performance', isLoggedIn, async (req, res) => {
   }
 });
 
-router.get('/studentDetails', isLoggedIn, (req, res) => {
+router.get('/studentDetails', isLoggedIn, async (req, res) => {
   if (req.user.isManager) {
-    User.find({})
-      .then((foundUsers) => {
-        res.render('studentDetails', { users: foundUsers });
-      })
-      .catch((err) => {
-        throw new Error('Not found!', err);
-      });
+    const users = await User.find().populate('groups');
+    res.render('studentDetails', { users });
+    // if (req.user.isManager) {
+    //   User.find({})
+    //     .then((foundUsers) => {
+    //       res.render('studentDetails', { users: foundUsers });
+    //     })
+    //     .catch((err) => {
+    //       throw new Error('Not found!', err);
+    //     });
   } else {
     res.render('err404');
   }
