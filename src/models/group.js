@@ -8,6 +8,7 @@ const groupSchema = new mongoose.Schema({
     ref: 'User',
     autopopulate: true,
   },
+  userName: String,
 });
 
 const Group = mongoose.model('Group', groupSchema);

@@ -2,6 +2,7 @@ const express = require('express');
 const User = require('../models/user');
 const isLoggedIn = require('../../middleware/auth');
 const Group = require('../models/group');
+const { use } = require('passport');
 const router = new express.Router();
 
 const app = express();
@@ -63,9 +64,12 @@ router.get('/assign', isLoggedIn, async (req, res) => {
   if (req.user.isManager) {
     try {
       const groups = await Group.find({});
-      const users = await User.find({}).populate('groups');
-      // console.log(users[0].groups[1]._id);
-      // console.log(groups[0].user);
+      const users = await User.find({}).populate('groups').exec();
+      console.log(users[0].groups);
+      // console.log(users[0].groups[0]._id);
+      // console.log(groups[0]._id);
+      console.log(typeof users[0].groups);
+      // console.log();
       res.render('assign', { groups, users });
     } catch (err) {
       console.log(err);
@@ -90,7 +94,11 @@ router.post('/createGroup', (req, res) => {
 router.post('/assignGroup/:id', async (req, res) => {
   try {
     const selected = req.params.id;
-    Group.findByIdAndUpdate(selected, { user: req.body.users })
+    console.log(req.body.users);
+    Group.findByIdAndUpdate(selected, {
+      user: req.body.users.split(' ')[0],
+      userName: req.body.users.split(' ')[1],
+    })
       .then(() => {
         res.redirect('/assign');
       })
