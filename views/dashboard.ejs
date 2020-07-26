@@ -129,15 +129,15 @@
                 <div class="col-md-4">
                     <div class="profile-work">
                         <p>GROUP DETAILS</p>
-                        <h6>GROUP NUMBER: <% if(user.group) { %>
-                            <%= group.groupNumber %>
+                        <h6> <% if(user.groups) { %>
+                            <% for(let i=0; i < user.groups.length; i++) {%>
+                            GROUP NUMBER:<%= user.groups[i].groupNumber %> <br><br>
+                            <a class="btn btn-secondary btn-sm active" href="<%= user.groups[i].groupLink %> ">GROUP
+                                LINK</a>
                             <hr>
-                            <a class="btn btn-secondary btn-sm active" href="<%= group.groupLink %> ">GROUP LINK</a>
-                            <% } else { %>
-                            Not Assigned
-                            <hr>
-                            <a class="btn btn-secondary btn-sm disabled" href="">GROUP LINK</a>
-                            <% } %></h6>
+                            <% } %>
+                            <% } %>
+                        </h6>
                     </div>
                     <div class="profile-work">
                         <p>SOCIAL LINKS</p>

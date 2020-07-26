@@ -8,8 +8,8 @@
   <% for(let i=0; i < groups.length; i++) { %>
   <td><%= groups[i].groupNumber %></td>
   <form action="/assignGroup/<%= groups[i]._id %> " method="POST">
-    <label for="Users">Users</label>
-    <select name="Users" id="">
+    <label for="users">Users</label>
+    <select name="users" id="">
       <% for (let i=0; i < users.length; i++) { %>
       <option value="<%= users[i]._id %>"> <%= users[i].fName %> </option>
       <% } %>
@@ -26,7 +26,7 @@
       <th scope="col">Group No.</th>
       <th scope="col">Group Link</th>
       <th scope="col">Add student</th>
-      <th>Students</th>
+      <!-- <th>Managed By</th> -->
       <th scope="col">Delete</th>
     </tr>
   </thead>
@@ -38,26 +38,20 @@
       <td><%= groups[i].groupLink %></td>
       <td>
         <form action="/assignGroup/<%= groups[i]._id %> " method="POST">
-          <select name="Users" id="">
+          <select name="users" id="">
             <% for (let i=0; i < users.length; i++) { %>
             <option value="<%= users[i]._id %>"> <%= users[i].fName %> </option>
             <% } %>
           </select>
           <input type="submit" value="save" />
         </form>
-      </td>
-      <% if(groups[i].users.length) { %> 
-      <% for(let j=0; j<groups[i].users.length; j++) { %> 
-      <td><%= groups[i].users[j].fName %></td>
-      <% } %> 
+        <!-- <% if(groups[i].user === users[i]._id) { %>
+      <td> <%= users[i].fName %> </td>
       <% } else { %>
-        <td>No Student</td>
-      <% } %>  
+      <td>Not Assigned</td>
+      <% } %> -->
       <td>
-        <form
-          action="/groups/<%= groups[i]._id %>?_method=DELETE"
-          method="post"
-        >
+        <form action="/groups/<%= groups[i]._id %>?_method=DELETE" method="post">
           <input type="submit" value="Delete" />
         </form>
       </td>

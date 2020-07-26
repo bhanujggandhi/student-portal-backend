@@ -55,11 +55,12 @@ const userSchema = new mongoose.Schema({
   idImage: String,
   score: Number,
   tempManager: Boolean,
-  group: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Group',
-    autopopulate: true,
-  },
+});
+
+userSchema.virtual('groups', {
+  ref: 'Group',
+  localField: '_id',
+  foreignField: 'user',
 });
 
 userSchema.plugin(passportLocalMongoose, { usernameField: 'email' });

@@ -16,11 +16,9 @@ router.get('/', function (req, res) {
 });
 
 router.get('/profile', isLoggedIn, async function (req, res) {
-  const groupID = req.user.group;
-  const group = await Group.findById(groupID);
+  const user = await User.findById(req.user.id).populate('groups');
   res.render('dashboard', {
-    user: req.user,
-    group,
+    user: user,
   });
 });
 
@@ -28,15 +26,17 @@ router.get('/reportingTool', isLoggedIn, (req, res) => {
   res.render('reportingTool', { user: req.user });
 });
 
-router.get('/performance', isLoggedIn, (req, res) => {
+router.get('/performance', isLoggedIn, async (req, res) => {
   if (req.user.isManager) {
-    User.find({})
-      .then((foundUsers) => {
-        res.render('performance', { users: foundUsers });
-      })
-      .catch((err) => {
-        throw new Error('Not found!', err);
-      });
+    const users = await User.find().populate('groups');
+    res.render('performance', { users });
+    // User.find({})
+    //   .then((foundUsers) => {
+    //     res.render('performance', { users: foundUsers });
+    //   })
+    //   .catch((err) => {
+    //     throw new Error('Not found!', err);
+    //   });
   } else {
     res.render('err404');
   }
@@ -59,9 +59,10 @@ router.get('/studentDetails', isLoggedIn, (req, res) => {
 router.get('/assign', isLoggedIn, async (req, res) => {
   if (req.user.isManager) {
     try {
-      const users = await User.find({});
-      const groups = await Group.find({}).populate('users', 'fName');
-      // console.log(groups[0].users[0].fName);
+      const groups = await Group.find({});
+      const users = await User.find({}).populate('groups');
+      // console.log(users[0].groups[1]._id);
+      // console.log(groups[0].user);
       res.render('assign2', { groups, users });
     } catch (err) {
       console.log(err);
@@ -86,8 +87,7 @@ router.post('/createGroup', (req, res) => {
 router.post('/assignGroup/:id', async (req, res) => {
   try {
     const selected = req.params.id;
-    console.log(selected);
-    User.findByIdAndUpdate(req.body.Users, { group: selected })
+    Group.findByIdAndUpdate(selected, { user: req.body.users })
       .then(() => {
         res.redirect('/assign');
       })
