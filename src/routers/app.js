@@ -66,7 +66,7 @@ router.get('/assign', isLoggedIn, async (req, res) => {
       const users = await User.find({}).populate('groups');
       // console.log(users[0].groups[1]._id);
       // console.log(groups[0].user);
-      res.render('assign2', { groups, users });
+      res.render('assign', { groups, users });
     } catch (err) {
       console.log(err);
     }

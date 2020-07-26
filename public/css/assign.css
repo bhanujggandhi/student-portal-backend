@@ -3377,14 +3377,7 @@ th {
   color: blue;
 }
 
-#aspbun {
-  background-color: #027BFC;
-  border: none;
-  height: 30px;
-  width: 140px;
-  color: white;
-  border-radius: 2px;
-}
+
 
 #deleteicon {
 
@@ -3393,32 +3386,59 @@ th {
   font-size: 20px;
 }
 
-#add-group {
-  border-radius: 1.5px;
+#design-input {
+  width: 158px;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  border-color: blue;
+  height: 30px;
+  margin-bottom: 2px;
+  background-color: rgba(173, 216, 230, 0.226);
+}
+
+#design-input-submit {
+  width: 158px;
+  background-color: #027BFC;
+  color: white;
+  border: none;
+  height: 30px;
 
 
 }
 
-#mobile-view-btn {
-  display: none;
-  width: 100%;
-  height: 50px;
+#design-input-select {
+  min-width: 100px;
+
+  border: 1.8px solid #027BFC;
+  margin-bottom: 2px;
+  color: #027BFC;
+}
+
+#design-input-save {
+  background-color: #027BFC;
+  color: white;
+  border: 2px solid #027BFC;
+  /* border:none; */
+  height: 22.7px;
+  margin-bottom: 2px;
+}
+
+#table-add-group {
+  position: relative;
+  margin-bottom: 120px;
 
 }
 
-#add-group-duplicate {
-  margin: 0 auto;
-  width: 150px;
-  height: 50px;
+#dropdownMenuButton {
+  width: 160px !important;
+  z-index: 20;
 
 }
 
-#group-number {
-  border-color: #027bfc31;
-}
-
-#group-link {
-  border-color: #027bfc31;
+.dropdown-menu {
+  width: 10px !important;
+  background-color: #027BFC;
 }
 
 #addstyle {
@@ -14763,13 +14783,6 @@ h2.widgettitle {
 }
 
 @media (max-width: 767px) {
-  #add-group {
-    display: none;
-  }
-
-  #mobile-view-btn {
-    display: unset;
-  }
 
   .modal-dialog {
     max-width: 100% !important;
