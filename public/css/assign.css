@@ -134,9 +134,12 @@ th {
 
 #deleteicon {
 
-  color: #027BFC;
+  color: red;
   background-color: white;
-  font-size: 20px;
+  font-size: 22px;
+  padding: 0;
+  border: none;
+  background: none;
 }
 
 #design-input {

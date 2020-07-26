@@ -150,10 +150,10 @@
                     </select>
                     <input type="submit" id="design-input-save" value="save" />
                   </form>
-                <td><%= groups[i].userName %> </td>
+                <td><a href="/users/<%= groups[i].user %>"> <%= groups[i].userName %> </a> </td>
                 <td style="text-align: center;">
                   <form action="/groups/<%= groups[i]._id %>?_method=DELETE" method="post">
-                    <button><i class="fa fa-trash" aria-hidden="true" id="deleteicon"></i></button>
+                    <button id="deleteicon"><i class="fa fa-trash" aria-hidden="true" id="deleteicon"></i></button>
                   </form>
                 </td>
               </tr>

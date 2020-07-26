@@ -65,11 +65,8 @@ router.get('/assign', isLoggedIn, async (req, res) => {
     try {
       const groups = await Group.find({});
       const users = await User.find({}).populate('groups').exec();
-      console.log(users[0].groups);
-      // console.log(users[0].groups[0]._id);
-      // console.log(groups[0]._id);
-      console.log(typeof users[0].groups);
-      // console.log();
+      // console.log(users[0].groups);
+      // console.log(typeof users[0].groups);
       res.render('assign', { groups, users });
     } catch (err) {
       console.log(err);
@@ -94,7 +91,6 @@ router.post('/createGroup', (req, res) => {
 router.post('/assignGroup/:id', async (req, res) => {
   try {
     const selected = req.params.id;
-    console.log(req.body.users);
     Group.findByIdAndUpdate(selected, {
       user: req.body.users.split(' ')[0],
       userName: req.body.users.split(' ')[1],
@@ -119,7 +115,6 @@ router.delete('/groups/:id', isLoggedIn, async (req, res) => {
 });
 
 router.get('/assignManager/:id', (req, res) => {
-  console.log(req.params.id);
   if (req.user.isManager === true) {
     let id = req.params.id;
     User.findOneAndUpdate({ _id: id }, { tempManager: true })
@@ -133,7 +128,6 @@ router.get('/assignManager/:id', (req, res) => {
 });
 
 router.get('/unassignManager/:id', (req, res) => {
-  console.log(req.params.id);
   if (req.user.isManager === true) {
     let id = req.params.id;
     User.findOneAndUpdate({ _id: id }, { tempManager: false })
