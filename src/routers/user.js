@@ -15,44 +15,47 @@ const app = express();
 
 //============Register===================
 
-router.get("/register", (req, res) => {
-  res.render("register");
-});
-
-router.post("/register", upload, (req, res) => {
-  const user = new User({
-    username: req.body.username,
-    email: req.body.email,
-    fName: req.body.fName,
-    lName: req.body.lName,
-    wNumber: req.body.wNumber,
-    collegeName: req.body.collegeName,
-    pImage: req.files[0].filename,
-    cImage: req.files[1].filename,
-    idImage: req.files[2].filename,
-  });
-
-  if (
-    req.body.email === "gandhibhanuj@gmail.com" ||
-    req.body.email === "mridulgandhi@wecbr.co" ||
-    req.body.email === "rohanarora@wecbr.co" ||
-    req.body.email === "sachinnegi808@gmail.com"
-  ) {
-    user.isManager = true;
-    user.position = "Manager";
-  }
-
-  User.register(user, req.body.password, (err, user) => {
+router.post("/register", (req, res) => {
+  upload(req, res, (err) => {
     if (err) {
-      req.flash("error", "User already exists");
+      req.flash("error", "Image must be in jpg/png format");
       res.redirect("/");
     } else {
-      passport.authenticate("local")(req, res, (err, user) => {
-        req.flash(
-          "success",
-          "Successfully Signed Up! Nice to meet you, " + req.body.fName
-        );
-        res.redirect("/profile");
+      const user = new User({
+        username: req.body.username,
+        email: req.body.email,
+        fName: req.body.fName,
+        lName: req.body.lName,
+        wNumber: req.body.wNumber,
+        collegeName: req.body.collegeName,
+        pImage: req.files[0].filename,
+        cImage: req.files[1].filename,
+        idImage: req.files[2].filename,
+      });
+
+      if (
+        req.body.email === "gandhibhanuj@gmail.com" ||
+        req.body.email === "mridulgandhi@wecbr.co" ||
+        req.body.email === "rohanarora@wecbr.co" ||
+        req.body.email === "sachinnegi808@gmail.com"
+      ) {
+        user.isManager = true;
+        user.position = "Manager";
+      }
+
+      User.register(user, req.body.password, (err, user) => {
+        if (err) {
+          req.flash("error", "User already exists");
+          res.redirect("/");
+        } else {
+          passport.authenticate("local")(req, res, (err, user) => {
+            req.flash(
+              "success",
+              "Successfully Signed Up! Nice to meet you, " + req.body.fName
+            );
+            res.redirect("/profile");
+          });
+        }
       });
     }
   });
