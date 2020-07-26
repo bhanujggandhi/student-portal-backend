@@ -53,12 +53,17 @@ const userSchema = new mongoose.Schema({
   pImage: String,
   cImage: String,
   idImage: String,
-  group: Number,
   score: Number,
   tempManager: Boolean,
+  group: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Group',
+    autopopulate: true,
+  },
 });
 
 userSchema.plugin(passportLocalMongoose, { usernameField: 'email' });
+userSchema.plugin(require('mongoose-autopopulate'));
 
 const User = mongoose.model('User', userSchema);
 

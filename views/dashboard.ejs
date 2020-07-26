@@ -130,9 +130,9 @@
                     <div class="profile-work">
                         <p>GROUP DETAILS</p>
                         <h6>GROUP NUMBER: <% if(user.group) { %>
-                            <%= user.group %>
+                            <%= group.groupNumber %>
                             <hr>
-                            <a class="btn btn-secondary btn-sm active" href="">GROUP LINK</a>
+                            <a class="btn btn-secondary btn-sm active" href="<%= group.groupLink %> ">GROUP LINK</a>
                             <% } else { %>
                             Not Assigned
                             <hr>
