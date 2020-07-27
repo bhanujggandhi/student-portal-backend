@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const passportLocalMongoose = require("passport-local-mongoose");
+const mongoose = require('mongoose');
+const passportLocalMongoose = require('passport-local-mongoose');
 
 const userSchema = new mongoose.Schema({
   fName: {
@@ -46,7 +46,7 @@ const userSchema = new mongoose.Schema({
   },
   position: {
     type: String,
-    default: "Admin",
+    default: 'Admin',
   },
   resetPasswordToken: String,
   resetPasswordExpires: Date,
@@ -58,7 +58,6 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
-<<<<<<< HEAD
 });
 
 userSchema.virtual('groups', {
@@ -69,12 +68,7 @@ userSchema.virtual('groups', {
 
 userSchema.plugin(passportLocalMongoose, { usernameField: 'email' });
 userSchema.plugin(require('mongoose-autopopulate'));
-=======
-});
 
-userSchema.plugin(passportLocalMongoose, { usernameField: "email" });
->>>>>>> eb5cc21387b398a4457b0008ed04edfd88de9936
-
-const User = mongoose.model("User", userSchema);
+const User = mongoose.model('User', userSchema);
 
 module.exports = User;
