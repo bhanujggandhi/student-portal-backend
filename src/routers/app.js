@@ -12,7 +12,7 @@ router.get('/', function (req, res) {
     req.flash('success', 'Welcome Back!');
     res.redirect('/profile');
   } else {
-    res.render('home');
+    res.render('home', { isGoogle: false });
   }
 });
 

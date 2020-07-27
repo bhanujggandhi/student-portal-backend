@@ -11,6 +11,8 @@ const flash = require('connect-flash');
 const moment = require('moment');
 const compression = require('compression');
 const { SecretKey } = require('./src/config/keys');
+const authRouter = require('./src/routers/auth');
+const GoogleStrategy = require('./src/config/googlePassportSetup');
 
 const port = process.env.PORT || 3000;
 
@@ -54,6 +56,7 @@ passport.deserializeUser(User.deserializeUser());
 app.use(express.json());
 app.use(userRouter);
 app.use(appRouter);
+app.use('/auth', authRouter);
 app.use(express.static(__dirname + '/public'));
 
 app.listen(port, () => {
