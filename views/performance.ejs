@@ -103,7 +103,7 @@
                 </td>
                 <% if(users[i].groups) { %>
                 <td><% for(let j=0; j < users[i].groups.length; j++) {%>
-                  <%= users[i].groups[j].groupNumber %>,
+                  <%= users[i].groups[j].groupNumber %>||
                   <% } %>
                   <% } else { %>
                   Not Assigned

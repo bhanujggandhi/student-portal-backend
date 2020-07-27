@@ -99,8 +99,8 @@
                         <h6> <% if(user.groups) { %>
                             <% for(let i=0; i < user.groups.length; i++) {%>
                             GROUP NUMBER:<%= user.groups[i].groupNumber %> <br><br>
-                            <a class="btn btn-secondary btn-sm active" href="<%= user.groups[i].groupLink %> ">GROUP
-                                LINK</a>
+                            <a class="btn btn-secondary btn-sm active"
+                                href="<%= user.groups[i].groupLink %> "><%= user.groups[i].groupLink %></a>
                             <hr>
                             <% } %>
                             <% } %>
