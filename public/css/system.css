@@ -12,7 +12,11 @@ h6 {
   font-size: 14px;
 }
 
-.footer {
+<<<<<<< HEAD=======.home-page {
+  margin: 20px;
+}
+
+>>>>>>>eb5cc21387b398a4457b0008ed04edfd88de9936 .footer {
   color: #fff;
   display: table-row;
   height: 1px;
@@ -145,6 +149,49 @@ h6 {
   font-size: 12px;
   color: #818182;
   margin-top: 5%;
+  <<<<<<< HEAD
+}
+
+.proile-rating span {
+  color: #495057;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.profile-head .nav-tabs {
+  margin-bottom: 5%;
+}
+
+.profile-head .nav-tabs .nav-link {
+  font-weight: 600;
+  border: none;
+}
+
+.profile-head .nav-tabs .nav-link.active {
+  border: none;
+  border-bottom: 2px solid #0062cc;
+}
+
+.profile-work {
+  padding: 14%;
+  margin-top: -15%;
+}
+
+.profile-work p {
+  font-size: 12px;
+  color: #818182;
+  font-weight: 600;
+  margin-top: 10%;
+}
+
+.profile-work a {
+  text-decoration: none;
+  color: #495057;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+=======
 }
 
 .proile-rating span {
@@ -232,6 +279,8 @@ h6 {
   .btn.btn-light.bg-white {
     font-size: 0.8rem;
   }
+
+  <<<<<<< HEAD
 }
 
 /* toggle button */
@@ -298,4 +347,5 @@ input:checked+.slider:before {
 
 .slider.round:before {
   border-radius: 50%;
+  =======>>>>>>>eb5cc21387b398a4457b0008ed04edfd88de9936
 }
