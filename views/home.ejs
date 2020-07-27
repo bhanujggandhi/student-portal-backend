@@ -29,8 +29,8 @@
         <img src="/images/logo.png" class="logo-login">
         <h2 class="head-ing">LOG IN</h2>
         <form action="/login" method="post">
-          <input type="email" name="email" placeholder="Email">
-          <input type="password" name="password" placeholder="Password"><br>
+          <input type="email" name="email" required placeholder="Email">
+          <input type="password" name="password" required placeholder="Password"><br>
           <a href="#" class="forgot">Forgot password?</a>
           <button class="button-login">Log In</button>
         </form>
@@ -67,19 +67,19 @@
         </div>
         <div id="generalRegister">
           <form action="/register" method="post" enctype="multipart/form-data">
-            <input type="text" name="fName" placeholder="First Name">
-            <input type="text" name="lName" placeholder="Last Name">
-            <input type="email" name="email" placeholder="Email">
-            <input type="text" name="wNumber" placeholder="Whatsapp Number" pattern="[1-9]{1}[0-9]{9}">
+            <input type="text" name="fName" required placeholder="First Name">
+            <input type="text" name="lName" required placeholder="Last Name">
+            <input type="email" name="email" required placeholder="Email">
+            <input type="text" name="wNumber" required placeholder="Whatsapp Number" pattern="[1-9]{1}[0-9]{9}">
             <label for="userPhoto">Profile Photo</label>
-            <input type="file" name="userPhoto" id="profile" placeholder="Profile Photo">
-            <input type="text" name="collegeName" placeholder="College Name">
+            <input type="file" name="userPhoto" required id="profile" placeholder="Profile Photo">
+            <input type="text" name="collegeName" required placeholder="College Name">
             <label for="coll-logo">College Logo</label>
-            <input type="file" name="userPhoto" id="coll-logo" placeholder="College Logo">
+            <input type="file" name="userPhoto" required id="coll-logo" placeholder="College Logo">
             <label for="coll-id">College ID</label>
-            <input type="file" name="userPhoto" id="coll-id" placeholder="College ID">
-            <input type="password" name="password" placeholder="Password">
-            <input type="password" name="cpassword" placeholder="Confirm Password"><br>
+            <input type="file" name="userPhoto" required id="coll-id" placeholder="College ID">
+            <input type="password" name="password" required placeholder="Password">
+            <input type="password" name="cpassword" required placeholder="Confirm Password"><br>
             <button class="button-login">Register <i class="fas fa-arrow-circle-right"></i></button>
           </form>
         </div>
@@ -122,7 +122,6 @@
       </div>
       <div class="validate">
         <p style="text-align: center; font-size: 1rem">Verification link sent to the email.</p>
-        <button class="button-login validate-otp done">OKAY</button>
       </div>
     </div>
   </div>
