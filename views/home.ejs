@@ -87,14 +87,14 @@
           <p>Please Fill below Fields:</p>
           <form action="/auth/register" method="post" enctype="multipart/form-data">
 
-            <input type="text" name="wNumber" placeholder="Whatsapp Number" pattern="[1-9]{1}[0-9]{9}">
+            <input type="text" name="wNumber" placeholder="Whatsapp Number" required pattern="[1-9]{1}[0-9]{9}">
             <label for="userPhoto">Profile Photo</label>
-            <input type="file" name="userPhoto" id="profile" placeholder="Profile Photo">
-            <input type="text" name="collegeName" placeholder="College Name">
+            <input type="file" name="userPhoto" id="profile" required placeholder="Profile Photo">
+            <input type="text" name="collegeName" required placeholder="College Name">
             <label for="coll-logo">College Logo</label>
-            <input type="file" name="userPhoto" id="coll-logo" placeholder="College Logo">
+            <input type="file" name="userPhoto" id="coll-logo" required placeholder="College Logo">
             <label for="coll-id">College ID</label>
-            <input type="file" name="userPhoto" id="coll-id" placeholder="College ID">
+            <input type="file" name="userPhoto" id="coll-id" required placeholder="College ID">
 
             <button class="button-login">Register <i class="fas fa-arrow-circle-right"></i></button>
 

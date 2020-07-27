@@ -1,5 +1,6 @@
 const express = require('express');
 require('./src/db/mongoose');
+require('./src/config/googlePassportSetup');
 const passport = require('passport');
 const bodyParser = require('body-parser');
 const LocalStrategy = require('passport-local');
@@ -12,7 +13,6 @@ const moment = require('moment');
 const compression = require('compression');
 const { SecretKey } = require('./src/config/keys');
 const authRouter = require('./src/routers/auth');
-const GoogleStrategy = require('./src/config/googlePassportSetup');
 
 const port = process.env.PORT || 3000;
 
