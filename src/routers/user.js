@@ -84,7 +84,7 @@ router.get('/logout', isLoggedIn, (req, res) => {
 
 //=======================User profile================
 router.get('/users/:id', isLoggedIn, (req, res) => {
-  if (req.user.isManager) {
+  if (req.user.isManager || req.user.tempManager) {
     User.findById(req.params.id)
       .populate('groups')
       .then((foundUser) => {

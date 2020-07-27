@@ -59,7 +59,7 @@
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 
 html {
-  font-family: sans-serif;
+  font-family: 'Nunito';
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
@@ -442,7 +442,7 @@ th {
 }
 
 @font-face {
-  font-family: 'Glyphicons Halflings';
+  font-family: 'Nunito';
   src: url("../../assets/libraries/bootstrap-sass/fonts/bootstrap/glyphicons-halflings-regular.eot");
   src: url("../../assets/libraries/bootstrap-sass/fonts/bootstrap/glyphicons-halflings-regular.eot?#iefix") format("embedded-opentype"), url("../../assets/libraries/bootstrap-sass/fonts/bootstrap/glyphicons-halflings-regular.woff2") format("woff2"), url("../../assets/libraries/bootstrap-sass/fonts/bootstrap/glyphicons-halflings-regular.woff") format("woff"), url("../../assets/libraries/bootstrap-sass/fonts/bootstrap/glyphicons-halflings-regular.ttf") format("truetype"), url("../../assets/libraries/bootstrap-sass/fonts/bootstrap/glyphicons-halflings-regular.svg#glyphicons_halflingsregular") format("svg");
 }

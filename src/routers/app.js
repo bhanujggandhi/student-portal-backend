@@ -28,7 +28,7 @@ router.get('/reportingTool', isLoggedIn, (req, res) => {
 });
 
 router.get('/performance', isLoggedIn, async (req, res) => {
-  if (req.user.isManager) {
+  if (req.user.isManager || req.user.tempManager) {
     const users = await User.find({}).populate('groups');
     res.render('performance', { users, user: req.user });
     // User.find({})
@@ -61,7 +61,7 @@ router.get('/studentDetails', isLoggedIn, async (req, res) => {
 });
 
 router.get('/assign', isLoggedIn, async (req, res) => {
-  if (req.user.isManager) {
+  if (req.user.isManager || req.user.tempManager) {
     try {
       const groups = await Group.find({});
       const users = await User.find({}).populate('groups').exec();
